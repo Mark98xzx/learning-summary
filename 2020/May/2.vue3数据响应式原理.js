@@ -1,5 +1,7 @@
 // vue3 响应式原理: 利用 Proxy 对象 对数组进行拦截
+// 原始 => 响应式
 const toProxy = new WeakMap() // 形如 obj: observed
+// 响应式 => 原始
 const toRow = new WeakMap()   // 形如 observed: obj
 
 function isObjesct(obj){
@@ -32,6 +34,7 @@ function reactive(obj){
 
             // 依赖收集
             track(target, key)
+            // target 是 obj， key 是 name
 
             return isObjesct(res) ? reactive(res) : res
         },

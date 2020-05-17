@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // WeakMap
+        // MDN文档: WeakMap 对象是一组键/值对的集合，其中的键是弱引用的。其键必须是对象，而值可以是任意的。
+
+        // 语法：new WeakMap([iterable])
+
+        // 参数：iterable
+        // Iterable 是一个数组（二元数组）或者其他可迭代的且其元素是键值对的对象。每个键值对会被加到新的 WeakMap 里。null 会被当做 undefined。
+
+            // 属性：
+            // WeakMap.length
+            // length  属性的值为 0。
+            // WeakMap.prototype
+            // WeakMap 构造器的原型。 允许添加属性到所有的 WeakMap 对象。
+
+            // WeakMap 实例
+            // 所有 WeakMap 实例继承自 WeakMap.prototype.
+
+            // 方法
+            // 1. WeakMap.prototype.delete(key)
+            // 移除key的关联对象。执行后 WeakMap.prototype.has(key)返回false。
+
+            // 2. WeakMap.prototype.get(key)
+            // 返回key关联对象, 或者 undefined(没有key关联对象时)。
+
+            // 3. WeakMap.prototype.has(key)
+            // 根据是否有key关联对象返回一个Boolean值。
+
+            // 4. WeakMap.prototype.set(key, value)
+            // 在WeakMap中设置一组key关联对象，返回这个 WeakMap对象。
+
+// const toProxy = new WeakMap()
+// let key = [1, 2]
+// console.log(toProxy.delete(key))
+
+            // demo
+            const wm1 = new WeakMap(),
+                wm2 = new WeakMap(),
+                wm3 = new WeakMap();
+            const o1 = {},
+                o2 = function(){},
+                o3 = window;
+
+            wm1.set(o1, 37)
+            wm1.set(o2, "azerty")
+            wm2.set(o1, o2) // value 可以是任意值，包括一个对象或者一个函数
+            wm2.set(o3, undefined)
+            wm2.set(wm1, wm2) // 键和值可以是任意对象，甚至另外一个 WeakMap 对象
+            // console.log(wm1)
+            // console.log(wm2)
+
+            console.log(wm1.get(o2)) // azerty
+            console.log(wm2.get(o2)) // undefined, wm2 中没有 o2 这个键
+            console.log(wm3.get(o3)) // undefined, 值就是 undefined
+
+            console.log(wm1.has(o2)) // true
+            console.log(wm2.has(o2)) // false
+            console.log(wm2.has(o3)) // true (即使值是 undefined)
+
+            wm3.set(o1, 66)
+            console.log(wm3.get(o1)) // 66
+
+            console.log(wm1.has(o1)) // true
+            console.log(wm1.delete(o1)) // true
+            console.log(wm1.has(o1)) // false
+
+    </script>
+</body>
+</html>
