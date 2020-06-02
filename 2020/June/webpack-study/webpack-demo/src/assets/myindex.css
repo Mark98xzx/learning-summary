@@ -1,0 +1,9 @@
+#ipt1 {
+  background-color: #0f0;
+}
+.mybox{
+  width: 700px;
+  height: 437px;
+  /* background-color: #ccc; */
+  background: url(./img/1.jpg);
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{ obj.name }}<br/>
+        <input type="text" v-model="obj.name">
+        <hr>
+        {{ obj.age }}<br/>
+        <input type="text" v-model="obj.age">
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            obj: {
+                name: '小明'
+            }
+        },
+        created(){
+            // this.obj.age = '18'
+            // 第一个：要添加的对象
+            // 第二个：添加的属性
+            // 第三个：添加的值
+            this.$set(this.obj, 'age', 18)
+        }
+    })
+</script>
+</html>

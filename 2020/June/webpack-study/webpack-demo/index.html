@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="ipt1">
+    <select id="sel">
+        <option value="0">+</option>
+        <option value="1">-</option>
+        <option value="2">*</option>
+        <option value="3">/</option>
+    </select>
+    <input type="text" id="ipt2">
+    <button id="btn">=</button>
+    <input type="text" id="ipt3">
+    <div class="mybox"></div>
+    <span class="glyphicon glyphicon-tint" aria-hidden="true"></span>
+    <div id="app"></div>
+</body>
+    <!-- <script src="./src/index.js"></script> -->
+    <!-- webpack 打包 -->
+    <!-- 将src中的 index.js 进行打包，由于 index.js 中引用了 calc.js, 所以webpack 将 index & calc 全部全部打包到 main.js 中 -->
+    <script src="./dist/main.js"></script>
+</html>
