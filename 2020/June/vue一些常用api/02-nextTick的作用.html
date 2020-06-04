@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" ref="myInput" v-model="msg">
+        <button @click="handleChange">点击我修改msg</button>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            msg: '我是数据 msg'
+        },
+        methods: {
+            handleChange(){
+                //  data 中的数据有一个特点，是响应式的，如果被改变，会马上更新视图
+                this.msg = 'msg'
+
+                // $nextTick 重新更新 dom  (让代码在下一次更新 dom 进执行)
+                this.$nextTick(function(){
+                    this.$refs.myInput.value = 'mmssgg'
+                })
+            }
+        },
+    })
+</script>
+</html>

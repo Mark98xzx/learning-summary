@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="search">
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: "#app",
+        data: {
+            search: ''
+        },
+        // 1.在 vue 实例中添加一个属性： watch
+        watch: {
+            // 2.watch 用来侦听一个已经存在的属性 search
+            search: function(){
+                // 3.当这个属性中的内容发生改变时，会执行这个侦听器中的内容
+                console.log('监听到改变')
+            }
+        },
+    })
+</script>
+</html>

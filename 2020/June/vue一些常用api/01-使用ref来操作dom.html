@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div >
+            <!-- 第一步：设置属性 ref -->
+            <img style="border: 1px solid #ccc" id="img" ref="changeImg" :src="img1" alt="">
+            <button @click="handleImg">点击切换图片</button>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: "#app",
+        data: {
+            img1: "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3505635486,3006958704&fm=26&gp=0.jpg",
+            img2: "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1446163485,3564402207&fm=26&gp=0.jpg"
+        },
+        methods: {
+            handleImg(){
+                // 第二步：操作 dom 修改 src 属性
+                // console.log(this.$refs.changeImg)
+                this.$refs.changeImg.src = this.img2
+            }
+        }
+    })
+    // 这种虽然可以操作 dom，但是在 vue 中不建议
+    // document.querySelector("#img").src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3505635486,3006958704&fm=26&gp=0.jpg"
+</script>
+</html>

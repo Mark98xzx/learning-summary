@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p>商品总价：{{allPrice}}</p>
+        <p>订单总金额：{{amount}}</p>
+    </div>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    // 1. 为什么使用计算属性
+        // 在模板中可以使用 JavaScript 表达式做一些简单的运算， 设计它的初衷是用于简单的计算，但在模板中烦入太多处理逻辑会让模板难以维护
+        // 例：在外卖系统中，怎么计算用户订单金额
+        // 商品个数：count 商品价格：price 折扣率：discount 配送费：freight
+        // 订单金额 = {{count*price*discount+freight}}
+        // w为了解决过于复杂的计算 我们引入了计算属性 computed
+        // 在使用时先定义计算属性 将复杂的计算在计算属性中直接计算完成 然后再给试图
+        let data = {
+            count: 5,
+            price: 11.5,
+            discount: 0.85,
+            freight: 3.5
+        }
+        let vm = new Vue({
+            el: "#app",
+            data: data,
+            computed: {
+                // 每一计算属性值是以函数形式，并且有返回值
+                amount: function(){
+                    // this 代表当前 vue 实例对象
+                    // this.$data 表示当前 Vue 实例对象装载的双向绑定数据
+                    // 代理： this.$data.count <==> this.count
+                    // return this.$data.count * this.$data.price * this.$data.discount + this.$data.freight
+                    return this.count * this.price * this.discount + this.freight
+                },
+                allPrice: function(){
+                    return this.count * this.price
+                }
+            },
+        })
+</script>
+</html>
