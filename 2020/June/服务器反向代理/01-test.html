@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.js"></script>
+<script>
+    // 解决跨域demo
+    // 需要启动 proxy_server 项目 nodemon ./app.js
+    function requestDouban(){
+        // 如果自己发送请求到豆瓣的服务器会发生跨域
+        // axios.get('https://api.douban.com/v2/movie/in_theaters?apikey=0df993c66c0c636e29ecbb5344252a4a').then(res => {
+        //     console.log(res.data)
+        // })
+        // 01-test.html:1 Access to XMLHttpRequest at 'https://api.douban.com/v2/movie/in_theaters?apikey=0df993c66c0c636e29ecbb5344252a4a' from origin 'http://127.0.0.1:5500' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+        
+        // 所以需要服务器反向代理（先发送到自己搭建的服务器 app.js => 豆瓣服务器）
+        axios.get('http://127.0.0.1:3000/move/in_theaters').then(res => {
+            console.log(res.data)
+        })
+    }
+
+    requestDouban()
+</script>
+</html>
