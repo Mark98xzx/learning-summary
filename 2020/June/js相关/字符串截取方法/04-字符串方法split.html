@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var str = "xu-zi-x123"
+
+    console.log(str.split()) // ["xuzi123"]
+    console.log(str.split("-")) // ["xu", "zi", "123"]
+    console.log(str.split("")) // ["x", "u", "-", "z", "i", "-", "1", "2", "3"]
+    console.log(str.split("", 3)) // ["x", "u", "-"]
+    console.log(str.split("", 50)) // ["x", "u", "-", "z", "i", "-", "1", "2", "3"]
+    console.log(str.split("x")) // ["", "u-zi-", "123"]
+
+    var str2 = "xu-xu"
+    console.log(str2.split("-")) // ["xu", "xu"]
+
+    var str3 = "xx"
+    console.log(str3.split("x")) // ["", "", ""]
+    console.log(str3.split("x").length-1) // 2
+
+    var str4 = "xxx-vv-dfbsdbx"
+    console.log(str4.split("x").length-1) // 4
+    console.log(str4.split("xxx").length-1) // 1
+
+
+    /*
+        split(separator[,num])
+            - separator: 
+                决定分割的字符，该字符的位置会作为分割点，并且自己的不存在单前数组中
+                如果是"", 可以把每一个字符都分隔开来
+                如果分割的字符处在字符串的首尾，则会有一个空字符串
+            - num：
+                可选，决定分割的数组中的个数
+                如果说给的值，超过了 length，分割也只会以当前字符串的最大分割符为标准
+    */
+
+</script>
+</html>

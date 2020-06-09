@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var arr = ["a", "b", "c", "d", "e"]
+
+    console.log(arr.slice()) // ["a", "b", "c", "d", "e"]
+    console.log(arr.slice(2)) // ["c", "d", "e"]
+    console.log(arr) // ["a", "b", "c", "d", "e"]
+    console.log(arr.slice(50)) // []
+    console.log(arr.slice(-2)) // ["d", "e"]
+    console.log(arr.slice(-50)) // ["a", "b", "c", "d", "e"]
+    console.log(arr.slice(2, 3)) // ["c"]
+    console.log(arr.slice(2, 1)) // []
+    console.log(arr.slice(2, -1)) // ["c", "d"]
+    console.log(arr.slice(2, -50)) // []
+    console.log(arr.slice(0, -50)) // []
+    console.log(arr.slice(0, 50)) // ["a", "b", "c", "d", "e"]
+
+
+    /*
+        slice(begin, end)
+            用于截取数组中的内容, 返回一个新的数组
+                - begin
+                    如果不给,默认为0
+                    截取的起始位置
+                    如果值超过了length,就会返回一个空数组
+                    如果是一个负数(负数的绝对值超过了length, 就会默认从0开始截取),那就说明从倒数第 begin 开始截取
+                    length + begin
+                - end
+                    如果不给,默认到数组结尾
+                    控制截取结束位置
+                    如果小于(从位置上来说) begin, 会得到一个空字符串
+                    如果是负数(如果负数的绝对值超过了length, 会得到一个空字符串), 那么就说明从倒数第 end 个结束
+                    如果超过了 length, 默认也只到数组的结尾位置
+
+                begin 是包含在内的, end是不包含在截取范围内
+    */
+    
+    // 拷贝
+    var arr2 = arr.slice()
+    console.log(arr2) // ["a", "b", "c", "d", "e"]
+    arr2[0] = "123"
+    console.log(arr2) // ["123", "b", "c", "d", "e"]
+    console.log(arr) // ["a", "b", "c", "d", "e"]
+
+    var arr3 = ["a", "b", "c"]
+    var arr4 = arr3
+    arr4[0] = "vv"
+    console.log(arr4) // ["vv", "b", "c"]
+    console.log(arr3) // ["vv", "b", "c"]
+
+    var arr5 = [{a:10, b:20}, "a"]
+    var arr6 = arr5.slice()
+    console.log(arr6)  // [{a:10, b:20}, "a"]
+    arr5[1] = "123"
+    arr5[0].a = "asdfafefe"
+    console.log(arr5) 
+    console.log(arr6) 
+
+    /*
+        深拷贝:
+            数据拷贝过来后, 和原数组之间完全没有任何关系了
+        浅拷贝:
+            数据拷贝过来后, 里面第一层的基本类型是没有关联了,但是里面的复杂类型,依旧是有关联
+        赋址:
+            数据不管是基本类型,还是复杂类型,都和原来的是相关联的
+    */
+
+</script>
+</html>

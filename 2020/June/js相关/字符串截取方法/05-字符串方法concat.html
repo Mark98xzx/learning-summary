@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var str1 = "xu"
+    var str2 = "zi"
+    var str3 = "12"
+    console.log(str1) // xu
+    console.log(str1.concat(str3)) // xu12
+    console.log(str1.concat(str2, str3)) // xuzi12
+
+    /*  
+        concat()
+            返回的是一个新的字符串，并不会改变原有的字符串
+            参数可以是多个字符串，以逗号进行隔开
+
+        += 的性能比用concat 要更好
+    */
+</script>
+</html>

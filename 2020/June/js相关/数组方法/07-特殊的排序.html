@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var arr = ["A", "B", "a", "b"]
+    // arr.sort()
+    // console.log(arr) // ["A", "B", "a", "b"]
+
+    arr.sort(function(a, b){
+        var a = a.toLowerCase()
+        var b = b.toLowerCase()
+
+        if(a>b){
+            return 1
+        }
+        if(a<b){
+            return -1
+        }
+        return 0
+    })
+    console.log(arr) // ["A", "a", "B", "b"]
+
+    
+    
+</script>
+</html>

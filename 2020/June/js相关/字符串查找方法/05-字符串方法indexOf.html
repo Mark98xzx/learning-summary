@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var str = "xuzixu"
+
+    console.log(str.indexOf("uz")) // 1
+    console.log(str.indexOf("yy")) // -1
+    console.log(str.indexOf("x", 1)) // 4
+    console.log(str.indexOf("x", -1)) // 0
+    console.log(str.indexOf("u", -1)) // 1
+    console.log(str.indexOf("u", 50)) // -1
+
+    /*
+        str.indexOf(searchValue, fromIndex)
+            可以用于查找str中是否有对应的字符串，如果有，返回该字符串第一次出现时候对应的索引值
+            -   searchValue: 当前想要查找的值
+            **  如果查找的值，不存在，返回 -1 
+            -   fromIndex: 这是一个可选值，不填默认为 0
+                如果输入的值小于 0，会当做 0 进行处理
+                如果超出了索引值的范围， 会返回 -1
+    */
+</script>
+</html>

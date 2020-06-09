@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var str = "kxuzixu"  // k- 107
+    var str2 = "v" // v - 118
+    console.log(str > str2) // false
+    /*
+        如果比较字符串，比较的是Unicode编码的大小
+    */
+    var china1 = "中"
+    var china2 = "文"
+    console.log(china1 > china2) // false
+    console.log(china1.charCodeAt(0), china2.charCodeAt(0)) // 20013   25991
+    console.log(china2.charCodeAt(10)) // NaN
+    console.log(china2.charCodeAt(-10)) // NaN
+    /*
+        charCodeAt 获取当前字符串的 Unicode编码
+        str.charCodeAt(index)
+            - index：字符串的索引值（下标），如果不给，默认为 0
+            - 如果下标不存在的值，那么会返回一个 NaN
+    */
+</script>
+</html>

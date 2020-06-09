@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var arr = [10,20,4,50,60,75,3]
+
+    // var num = []
+    // for (let i = 0; i < arr.length; i++) {
+    //     if(arr[i]>50){
+    //         num.push(arr[i])
+    //     }
+    // }
+    // console.log(num) // [60, 75]
+
+    /*
+        for循环
+            初始化变量
+            判断条件
+            更改条件
+            if判断
+            ...
+    */
+
+    var newArr = arr.filter(function(ele, index, arr){
+        console.log(this) // 没有第二个参数 默认指向 window
+
+        // console.log(ele, index, arr)
+
+        // return true  // 直接return true 将全部返回 [10, 20, 4, 50, 60, 75, 3]
+
+        return ele >= 50  // [50, 60, 75]
+
+    }, arr)
+
+    console.log(newArr) // [50, 60, 75]
+    console.log(arr) // [10, 20, 4, 50, 60, 75, 3]
+
+    /*
+        arr.filter(callback)
+            筛选出符合函数中条件的元素,并作为一个新的数组返回
+                - callback(ele, index, arr) 函数
+                    - ele: 循环过程中的每一位元素
+                    - index: 当前循环的元素对应的下标值(索引)
+                    - arr: 调用forEach的当前数组
+                - thisArg: 控制当前callback中的this指向
+    */
+
+</script>
+</html>

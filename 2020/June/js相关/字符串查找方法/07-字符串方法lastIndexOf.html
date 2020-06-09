@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var str = "xuzixu"
+
+    console.log(str.lastIndexOf("u")) // 5
+    console.log(str.lastIndexOf("u", str.length)) // 5
+    console.log(str.lastIndexOf("u", 50)) // 5
+    console.log(str.lastIndexOf("u", -10)) // -1
+    console.log(str.lastIndexOf("u", 0)) // -1
+    console.log(str.lastIndexOf("vv")) // -1
+
+    /*
+        lastIndexOf(searchValue, fromIndex)
+            用于返回查找指定值对应的最后一个索引值，从后往前搜索
+            -   serachVlaue: 需要查找的字符串
+            -   fromIndex: 起始搜索的位置（从后往前），如果不给，默认为str.length
+                    如果超过 str.length， 则为 str.length
+                    如果小于0，则默认为0
+                    如果找不到指定的值则返回 -1
+    */
+</script>
+</html>

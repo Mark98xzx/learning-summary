@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var str = "xuzixu1"
+
+    var str2 = str.substring()
+    console.log(str2) // xuzixu1
+
+    console.log(str.substring(1)) // uzixu1
+    console.log(str.substring(-5)) // xuzixu1
+    console.log(str.substring(-1)) // xuzixu1
+    console.log(str.substring(50)) // 空字符串
+    console.log(str.substring(1, 4)) // uzi
+    console.log(str.substring(1, 50)) // uzixu1
+    console.log(str.substring(1, -50)) // x
+    console.log(str.substring(1, -1)) // x
+    console.log(str.substring(5, 1)) // uzix
+    console.log(str.substring(0, 0)) // 空字符串
+
+    /*
+    str.substring(begin, end)
+        返回截取的字符串
+        -   begin：
+                截取的起始位置，不传默认为0,如果这个值小于0， 它就会被设置为0
+
+        -   end:
+                截取的结束位置，默认length，
+                如果超过了length，默认为length。负数的值也是可以的（如果超过 -length， 那么会默认设置为 0）
+
+
+        截取的时候包含 begin 的值，但不包含 end 的值
+
+        substring，如果说起始值的begin对应的值的索引在后，end的值的索引在前，那么会将 begin 和 end 调换
+
+        
+        起始位置如果超过了 length ，那么会返回一个空的字符串
+        如果起始位置和结束位置，是同一个索引值，这时候返回空字符串
+
+    */
+</script>
+</html>

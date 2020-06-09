@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var arr = ["a", "b", "c", "a"]
+    console.log(arr.indexOf("a")) // 0
+    console.log(arr.indexOf("vv")) // -1
+    console.log(arr.indexOf("a", 1)) // 3
+    console.log(arr.indexOf("a", 50)) // -1
+    console.log(arr.indexOf("a", arr.length)) // -1
+    console.log(arr.indexOf("a", -2)) // 3
+    console.log(arr.indexOf("a", -50)) // -1
+    console.log(arr.indexOf("a", 0)) // 0
+
+
+    /*
+        indexOf(searchValue[, formIndex])
+            查找目标字符串中,是否包含 searchValue, 如果包含,则会返回第一次出现的索引, 如果不包含,则返回 -1
+            - searchValue 要查找的值
+            - formIndex 查找的起始位置, 如果不填,默认为0
+                如果大于 length 或者等于 lenth, 则返回 -1
+                如果说是一个负数(如果这个负数的绝对值超过 length, 则formIndex为0), 根据倒着数来确认查找的位置
+                length + formIndex
+
+
+    */
+</script>
+</html>

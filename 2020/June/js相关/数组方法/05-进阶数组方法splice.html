@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 删除
+    var arr = [1, 2, 3]
+    arr.splice(0)
+    console.log(arr) // []
+
+    
+    var arr1 = [1, 2, 3]
+    arr1.splice(1)
+    console.log(arr1) // [1]
+
+    var arr2 = [1, 2, 3, 4, 5, 6]
+    arr2.splice(1, 2)
+    console.log(arr2) // [1, 4, 5, 6]
+
+    // 替换
+    var arr3 = [1, 2, 3, 4, 5, 6]
+    arr3.splice(1, 2, 'b', 'c')
+    console.log(arr3) // [1, "b", "c", 4, 5, 6]
+
+
+    var arr4 = [1, 2, 3, 4, 5, 6]
+    arr4.splice(50)
+    console.log(arr4) // [1, 2, 3, 4, 5, 6]
+
+    var arr5 = [1, 2, 3, 4, 5, 6]
+    arr5.splice(-2)
+    console.log(arr5) // [1, 2, 3, 4]
+
+    var arr6 = [1, 2, 3, 4, 5, 6]
+    arr6.splice(-20)
+    console.log(arr6) // []
+
+
+    // 添加, 如果不删除元素, 但又存在第三个或者 3+ 的参数, 就会有添加的功能
+    var arr7 = [1, 2, 3, 4, 5, 6]
+    arr7.splice(1, 0, 'a', 'b', 'c')
+    console.log(arr7) // [1, "a", "b", "c", 2, 3, 4, 5, 6]
+
+
+    // 返回值
+    var arr8 = [1, 2, 3, 4, 5, 6]
+    console.log(arr8.splice(1, 2)) // [2, 3]
+
+    var arr9 = [1, 2, 3, 4, 5, 6]
+    console.log(arr9.splice(1, 0, 'a', 'b', 'c')) // []
+
+    /*
+        splice(strat[, num, item1, item2...])
+            -   start: 删除的起始位置
+                       如果start大于length，就不删除
+                       如果start是一个负数(负数的绝对值超过了length,则起始位置被设定为 length),从右到左查找对应的起始位置 length+(start)
+
+            -   num: 可选，默认删除到数组的末尾，表示删除的个数
+                        如果小于 0 或 NaN,则当作0进行处理,不删除任何元素
+            -   item1, item2... 从删除的位置，添加第二个参数以后的内容
+
+
+            返回值是所有删除的元素, 组成的数组; 如果没有删除任何元素,将会得到一个空数组
+    */
+</script>
+</html>

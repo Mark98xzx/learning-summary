@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var str = "xuzixu"
+    console.log(str[1])
+
+    /*
+        通过str[index]这样的方式取值是有兼容问题的，IE8以下是无法使用的
+
+        str.charAt(index)
+            -   index: 字符串的索引值（下标），如果不填，默认为0
+            -   如果超出 str.length， 或者小于0，那么会返回一个空字符串
+
+    */
+    console.log(str.charAt(1))
+    console.log(str.charAt(str.length + 10))
+    console.log(str.charAt(-5))
+</script>
+</html>

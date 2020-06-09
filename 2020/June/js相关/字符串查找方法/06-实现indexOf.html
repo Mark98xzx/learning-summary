@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var str = "xuzixu"
+
+    /*
+        根据我们输入的值，找到对应的 index
+        - str  要处理的字符串
+        - searchValue 要找的字符串
+        - fromIndex 查找的起始位置
+    */ 
+
+    function getIndex(str, searchValue, fromIndex){
+        // console.log(fromIndex)
+        if(fromIndex<0 || fromIndex === undefined){
+            fromIndex = 0
+        }
+        if(fromIndex >= str.length){
+            return -1
+        }
+        
+        for (let i = fromIndex; i < str.length; i++) {
+            // console.log(str.charAt(i))
+            if(str.charAt(i) === searchValue){
+                // console.log(i)
+                return i
+            }
+        }
+        return -1
+    }
+
+    console.log(getIndex(str, 'u', 0)) // 1
+    console.log(getIndex(str, 'v', 0)) // -1
+    console.log(getIndex(str, 'u')) // 1
+    console.log(getIndex(str, 'u', 50)) // -1
+
+</script>
+</html>

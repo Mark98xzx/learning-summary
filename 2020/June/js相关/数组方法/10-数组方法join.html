@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var arr1 = ["xu", "zi", "12"]
+    var str1 = "xu-zi-12"
+
+    console.log(str1.split("-")) // ["xu", "zi", "12"]
+
+    console.log(arr1.join()) // xu,zi,12
+    console.log(arr1.join("%")) // xu%zi%12
+    console.log(arr1.join("")) // xuzi12
+    console.log(arr1.join(" ")) // xu zi 12
+
+    var arr2 = []
+    console.log(arr2.join()) // 空字符串
+
+    var arr3 = ["xuzi12"]
+    console.log(arr3.join()) // xuzi12
+
+    /*
+        join(sparator)
+            把数组拼接起来,以字符串的方式,进行返回, 如果不给参数,默认以逗号进行分割
+            - sparator
+                决定以什么符合对数组里面进行拼接
+
+            ** 如果数组是一个空数组的话, 则会返回一个空字符串
+            ** 如果数组长度为1时,直接返回该字符串
+    */
+</script>
+</html>

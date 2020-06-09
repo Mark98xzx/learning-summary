@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // substr不建议使用，尽量少用
+
+    var str = "xuzixu1"
+
+    console.log(str.substr(2)) // zixu1
+    console.log(str.substr(2, 1)) // z
+    console.log(str.substr(2, 2)) // zi
+    console.log(str.substr(-5, 2)) // zi
+    console.log(str.substr(-5, 50)) // zixu1
+    console.log(str.substr(-5, -5)) // 空字符串
+
+    var str2 = str.substr(-5, -5)
+    console.log(str) // xuzixu1
+    console.log(str2) // 空字符串
+
+    /*
+        substr(start[,length])
+            截取从 start 位置开始的字符，返回的也是新的字符串，并不会改变原有的字符串
+                - satrt: 
+                    截取的起始位置，可以是负数，如果是负数，则从右到左length-(start)
+                    如果起始位置的值太大，则默认为0
+                - length：
+                    截取字符的个数，如果不填，默认为该字符串结尾的位置。如果超出了length，则默认为到字符串结尾的位置
+                    如果个数是个负数，则返回空字符串
+    */
+
+</script>
+</html>

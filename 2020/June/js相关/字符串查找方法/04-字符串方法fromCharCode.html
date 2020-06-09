@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var str = "我爱你"
+    var arr = []
+    for (let i = 0; i < str.length; i++) {
+        console.log(str.charCodeAt(i))
+        arr[i] = str.charCodeAt(i)
+    }
+    console.log(arr)
+    String.fromCharCode(arr[0])
+    console.log(String.fromCharCode(arr[0])) // 我
+    console.log(String.fromCharCode(arr[1])) // 爱
+    console.log(String.fromCharCode(arr[2])) // 你
+
+    console.log(String.fromCharCode(arr[0], arr[1], arr[2]))
+</script>
+</html>

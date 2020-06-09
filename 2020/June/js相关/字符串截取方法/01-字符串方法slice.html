@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var str = "xuzixu"
+
+    var str2 = str.slice()
+    console.log(str2) // xuzixu
+
+    console.log(str.slice(1)) // uzixu
+    console.log(str.slice(-4)) // zixu
+    console.log(str.slice(-40)) // xuzixu
+    console.log(str.slice(1, 4)) // uzi
+    console.log(str.slice(1, 50)) // uzixu
+    console.log(str.slice(1, -1)) // uzix
+    console.log(str.slice(4, 0)) // 空字符串
+    console.log(str.slice(50, 100)) // 空字符串
+    console.log(str.slice(0, 0)) // 空字符串
+
+    /*
+        str.slice(begin, end)
+            返回的是从 begin 的位置开始截取，到 end 的位置结束，但不包含 end 的字符串
+            -   begin：
+                    截取的起始位置，不传默认为0,可以接收负数，如果是负数（如果当前的负数，达到了 -length，那么再小的值，起始值会被设为0），则会倒数n位，进行截取
+            -   end:
+                    截取的结束位置，默认length，如果超过了length，默认为length。负数的值也是可以的（如果超过 -length， 那么会为 0）
+
+
+            begin是包含在截取的字符串内的，但是end是不包含的
+            如果 end 对应的值的索引处在 begin 的前面，这时候会返回一个空字符串
+            begin 如果超出了 length ，会返回空字符串
+            如果 begin 和 end 是处在同一哥索引上，在时候也会返回空字符串
+
+
+    */
+</script>
+</html>
