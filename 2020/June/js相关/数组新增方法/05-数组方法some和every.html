@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li><input type="checkbox">吃的</li>
+        <li><input type="checkbox">喝的</li>
+        <li><input type="checkbox">玩的</li>
+    </ul>
+    <button disabled>去支付</button>
+    
+</body>
+<script>
+    var btn = document.querySelector('button')
+    var checkboxs = document.querySelectorAll('ul input')
+
+    /*
+        querySelectorAll 获取到的元素,并不是一个数组,是一个类数组
+    */
+    var checkBox = []
+    for (let i = 0; i < checkboxs.length; i++) {
+        checkBox.push(checkboxs[i])
+    }
+
+    checkboxs.forEach(function(item){
+        item.onclick = function(){
+            // Array.isArray() 用于 检测一个值, 是否是数组
+            // console.log(Array.isArray(checkboxs)) // false
+            // checkboxs.some(function(ele){
+            //     console.log(ele)
+            // })
+
+            var a = checkBox.some(function(ele) {
+                // console.log(ele)
+                return ele.checked;
+            })
+            // console.log(a) 
+            if(a){
+                btn.disabled = false
+            }else{
+                btn.disabled = true
+            }
+            // btn.disabled = a ? false : true
+        }
+    })
+
+    // for (let i = 0; i < checkboxs.length; i++) {
+    //     checkboxs[i].onclick = function(){
+    //         var num = 0
+    //         for (let j = 0; j < checkboxs.length; j++) {
+    //             // console.log(checkboxs[j].checked)
+    //             if(checkboxs[j].checked){
+    //                 num++;
+    //             }
+    //             if(num){
+    //                 console.log('至少有一个被选中')
+    //                 btn.disabled = false;
+    //             }else{
+    //                 console.log('没有选到')
+    //                 btn.disabled = true;
+    //             }
+    //             if(num == checkboxs.length){
+    //                 console.log('全部勾选中')
+    //             }
+    //         }
+    //     }
+    // }
+    btn.onclick = function(){
+        alert('支付成功')
+    }
+
+
+    /*
+        some(callback[, thisAry])
+            测试数组中是否至少有一个元素通过了指定函数的测试, 结果返回布尔值
+            - callback 用于测试的函数
+                - ele 数组循环中的元素
+                - index 元素对应的下标
+                - array 当前正在操作的数组
+            - thisAry: 决定callback中的 this 指向
+
+            返回值 是根据函数条件的布尔值
+    */
+</script>
+</html>

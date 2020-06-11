@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var arr = [10, 20, 4, 50, 60, 75, 3]
+    var num = 0
+    for (let i = 0; i < arr.length; i++) {
+        num += arr[i]
+    }
+    console.log(num) // 222
+
+
+    /*
+        arr.reduce(callback[, initValue]) 用于累计的
+            对数组中的每一个元素执行 callback 函数, 将结果根据 callback 函数中的条件, 返回单个值
+            - callback: 执行的函数
+                - result 结果
+                - ele 当前正在循环的元素
+                - index 当前正在循环的元素对应的索引值
+            - initValue: 可选值, 对于 result 进行初始化
+    */
+
+    var num2 = arr.reduce(function(result, ele, index){
+        console.log(result, ele, index)
+        /*
+            没有return
+                10 20 1
+                undefined 4 2
+                undefined 50 3
+                undefined 60 4
+                undefined 75 5
+                undefined 3 6
+
+            undefined 的出现是因为我们没有把结果 return 给 result 接收
+        */
+        return result + ele;
+        /*
+            有 return 
+                10 20 1
+                30 4 2
+                34 50 3
+                84 60 4
+                144 75 5
+                219 3 6
+        */
+    }, 0) // ininValue 给了第二个参数 0, 打印会多一行,将 从下标为 0 开始, 赋值给result; 如果不给 则从下标为1开始
+    console.log(num2) // 222
+</script>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var obj = {
+        name: "小明",
+        age: 18
+    }
+    
+    obj.name;
+    obj.age;
+
+    var keys = []
+    var values = []
+
+    for (const k in obj) {
+        console.log(k)
+        console.log(obj[k])
+
+        keys.push(k)
+        values.push(obj[k])
+    }
+
+    console.log(keys) // ["name", "age"]
+    console.log(values)  // ["小明", 18]
+
+
+    /*
+        键值对
+            key: value
+    */
+</script>
+</html>

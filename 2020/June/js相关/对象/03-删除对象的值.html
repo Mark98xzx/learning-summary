@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var obj = {
+        name: "小明",
+        age: 18
+    }
+    obj.name = ''
+    console.log(obj) // {name: "", age: 18} 只能删除值
+
+    /*
+        删除整个键值对
+
+        delete obj.key  通过这样的方式可以删除整个键值对 
+
+    */
+    delete obj.name;
+    console.log(obj) // {age: 18}
+</script>
+</html>

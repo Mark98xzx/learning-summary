@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // var _json = '{"key": value}'
+    var _json = '{"name": "xzx123"}'
+    var _json2 = '[1, 2, 3]'
+
+    /*
+        JSON 对象: 为了方便操作 JSON 的数据,所以JS 中才专门准备了这样一个对象
+    */
+    var a = JSON.parse(_json)
+    console.log(a) // {name: "xzx123"}
+    var b = JSON.parse(_json2)
+    console.log(b) // [1, 2, 3]
+
+    var obj = {
+        name: "mark123"
+    }
+    var str = JSON.stringify(obj)
+    console.log(str) // {"name":"mark123"}
+    console.log(typeof str) // string
+
+    /*
+        JSON 的特点
+            1. key必须加上引号
+            2. JSON 中最后一个值后面不能跟逗号
+    */
+    
+   
+
+</script>
+</html>

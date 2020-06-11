@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li><input type="checkbox">吃的</li>
+        <li><input type="checkbox">喝的</li>
+        <li><input type="checkbox">玩的</li>
+    </ul>
+    <div>
+        <input id="all" type="checkbox">全选
+    </div>
+    <button disabled>去支付</button>
+
+    <p class="phone">123131313213</p>
+    <p class="phone">123131313213</p>
+    
+</body>
+<style>
+    .phone::before{
+        content: '\260E';
+        font-size: 16px;
+    }
+    .phone::after{
+        content: '\260E';
+        font-size: 16px 
+    }
+</style>
+<script>
+    var btn = document.querySelector('button')
+    var checkboxs = document.querySelectorAll('ul input')
+    var allCheck = document.querySelector('#all')
+
+
+    var checkBox = []
+    for (let i = 0; i < checkboxs.length; i++) {
+        checkBox.push(checkboxs[i])
+    }
+
+    checkboxs.forEach(function(item){
+        item.onclick = function(){
+            var b = checkBox.every(function(ele){
+                console.log(ele)
+                return ele.checked;
+            })
+            if(b){
+                allCheck.checked = true
+            }else {
+                allCheck.checked = false
+            }
+            // allCheck.checked = b ? true : false 
+        }
+    })
+
+    // for (let i = 0; i < checkboxs.length;  i++) {
+    //     checkboxs[i].onclick = function(){
+    //         var num = 0
+    //         for (let j = 0; j < checkboxs.length; j++) {
+    //             // console.log(checkboxs[j].checked)
+    //             if(checkboxs[j].checked){
+    //                 num++;
+    //             }
+    //             if(num){
+    //                 console.log('至少有一个被选中')
+    //                 btn.disabled = false;
+    //             }else{
+    //                 console.log('没有选到')
+    //                 btn.disabled = true;
+    //             }
+    //             if(num == checkboxs.length){
+    //                 console.log('全部勾选中')
+    //                 allCheck.checked = true;
+    //             }else{
+    //                 allCheck.checked = false;
+    //             }
+    //         }
+    //     }
+    // }
+    btn.onclick = function(){
+        alert('支付成功')
+    }
+
+
+    /*
+        every(callback[, thisAry])
+            测试数组中所有的元素是否通过了指定函数的测试, 结果返回布尔值
+            - callback 用于测试的函数
+                - ele 数组循环中的元素
+                - index 元素对应的下标
+                - array 当前正在操作的数组
+            - thisAry: 决定callback中的 this 指向
+
+            返回值 是根据函数条件的布尔值
+    */
+</script>
+</html>
