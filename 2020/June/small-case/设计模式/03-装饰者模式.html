@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 装饰者模式
+
+    class Yase{
+        constructor(){
+            this.name = "亚瑟"
+        }
+        fire(){
+            console.log("开火了....")
+        }
+    }
+
+    // 增强伤害：（增加了100点伤害）
+    // 装饰者
+    Function.prototype.DecoratorFn = function(fn, arg){
+        this(); // this()调用的是 Yase类 中的 fire()
+        // 增加扩展（加装饰者）
+        fn(arg)
+    }
+    // 扩展（加装饰者）
+    function hurt(name){
+        console.log("增加了100点伤害", name)
+    }
+    let yase = new Yase()
+    // yase.fire() // 开火了....
+    yase.fire.DecoratorFn(hurt, "张三") // 开火了....   增加了100点伤害
+
+    /*
+        装饰者模式
+            不需要改原来的逻辑
+            解耦强
+            解耦比回调函数强
+    */
+</script>
+</html>

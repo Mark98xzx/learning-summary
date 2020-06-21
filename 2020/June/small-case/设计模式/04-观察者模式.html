@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 观察者模式也可以称为 （自定义事件）
+    // 观察者 与 发布订阅是有区别的
+    function a(){
+        console.log("a的逻辑")
+    }
+    function b(){
+        console.log("b的逻辑")
+    }
+    // a()
+    // b()
+    // document.addEventListener("click", a)
+    // document.addEventListener("click", b)
+
+    let handler = {}
+    // {myevent: [a, b, c]}
+    // 自定义事件
+    function addEvent(eventName, fn){
+        // 保存事件
+        if(typeof handler[eventName]==="undefined"){
+            handler[eventName] = []
+        }
+        handler[eventName].push(fn)
+    }
+    addEvent("myevent", a)
+    addEvent("myevent", b)
+    console.log(handler)
+
+    // 触发函数
+    function trigger(eventName){
+        if(typeof handler[eventName] === "undefined"){
+            return
+        }
+        handler[eventName].forEach(v => {
+            v()
+        })
+    }
+    // 触发一下
+    trigger("myevent")
+
+    /*
+        观察者模式
+            绑定后，可以直接触发多个方法（类似系统，点击一次触发很多（全部）方法）
+            解耦
+            模拟 addEventListener 方法
+
+        vue 组件通信
+            $emit() == trigger 
+            $on   ==  addEvent
+    */ 
+</script>
+</html>

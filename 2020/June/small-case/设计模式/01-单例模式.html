@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script type="module">
+        import Single from './single.js'
+        // single.js 第一种写法，会被修改
+        // Single.instance = {name: "修改的"}
+        // 第二种，就修改不了
+        Single.instace = {name: "修改的"}
+        let zhangsan = new Single("张三")
+        let lisi = new Single("李四")
+        console.log(zhangsan, lisi)
+
+        /*
+            单例模式：
+                优点: 实例化多个（没有任何开销），实际上只实例化过程一次而已，节约开销
+                缺点：扩展性不是很强
+        */ 
+    </script>
+</body>
+</html>
