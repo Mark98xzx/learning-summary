@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <my-img></my-img> -->
+    <img is="my-img" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=186602880,1005592543&fm=26&gp=0.jpg" alt="">
+</body>
+<script>
+    // 继承html元素 p标签 img 标签 ......
+    class MyImg extends HTMLImageElement{
+        constructor(){
+            super()
+            console.log(this)
+            setTimeout(() => {
+                this.src = "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2841247860,2911841437&fm=26&gp=0.jpg"
+            }, 1000)
+        }
+    }
+
+    customElements.define("my-img", MyImg, {extends: "img"}) // 固定写法: extends继承img
+</script>
+</html>

@@ -1,3 +1,5 @@
+import Dialog from "./dialog"
+
 export default class MyEvent{
     constructor(){
         this.handle = {}
@@ -31,5 +33,5 @@ export default class MyEvent{
             v()
         })
     }
-    
 }
+

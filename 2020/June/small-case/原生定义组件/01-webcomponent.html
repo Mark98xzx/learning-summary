@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 3. 使用 -->
+    <!-- <my-com>123</my-com> -->
+    <my-com></my-com>
+</body>
+<script>
+    // 所有的标签都是原生组件
+
+    // 1. 自定义组件
+    class MyCom extends HTMLElement{
+        constructor(){
+            super();
+            // console.log(this)
+            // 可以 js 操作，生成html之类，修改样式
+            let div = document.createElement("div")
+            div.innerHTML = `<button>我是按钮</button>`
+
+            // 可以控制节点的显示与隐藏
+            // open: 外部可以取到它；如果不想被取到，可以设置为closed，则外部没有权限取到它
+            let _sd = this.attachShadow({mode: "closed"})
+            _sd.appendChild(div)
+
+            // this.appendChild(div)
+        }
+    }
+
+    // 2. 注册  第一个：自定义组件名称，第二个：配置项
+    customElements.define("my-com", MyCom)
+
+    // 外部获取 dom
+    let ele = document.querySelector("my-com")
+    console.log(ele.shadowRoot) // 如果是 closed 获取到的是 null
+</script>
+</html>

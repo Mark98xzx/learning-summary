@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script type="module">
+    import MyEvent from './myEvent.js'
+    let eventInstance = new MyEvent()
+    function fn1(){
+        console.log('fn1....')
+    }
+    function fn2(){
+        console.log('fn2....')
+    }
+    eventInstance.addEvent("myevent", fn1)
+    eventInstance.addEvent("myevent", fn2)
+
+    // eventInstance.trigger("myevent")
+
+    // 移除
+    eventInstance.removeEvent("myevent", fn2)
+    eventInstance.trigger("myevent")
+
+</script>
+</html>
