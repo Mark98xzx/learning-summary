@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function Person(name){
+        this.name = name;
+        this.age = 20;
+        // this.hobby = function(){
+        //     console.log("喜欢篮球");
+        // }
+    }
+
+    // 功能空间原型
+    Person.prototype.hobby = function(){
+        console.log("喜欢打篮球")
+    }
+    Person.prototype.fn = function(){
+        console.log("fn....")
+    }
+
+    let zhangsan = new Person("张三");
+    let lisi = new Person("李四");
+
+    console.log(zhangsan.hobby===lisi.hobby); true 
+</script>
+</html>

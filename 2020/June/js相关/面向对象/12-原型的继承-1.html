@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 继承
+    function Dad(name, age){
+        this.name = name;
+        this.age = age;
+        this.money = "100000";
+    }
+
+    Dad.prototype.fn = function(){
+        console.log("fn...")
+    }
+
+    function Son(name, age){
+        // Dad.call(this, name, age)
+        // Dad.apply(this, [name, age])
+        Dad.bind(this)(name,age)
+        this.sex = "男"
+    }
+
+    Son.prototype = Dad.prototype;
+    Son.prototype.fn = function(){
+        console.log("重写的fn...")
+    }
+
+    let zhangsan = new Son("张三", 20)
+    // console.log(zhangsan.money)
+    // console.log(zhangsan.sex)
+
+    zhangsan.fn()
+
+    let zhangDad = new Dad("张爸", 40)
+    zhangDad.fn()
+
+    /*
+        原型继承
+            如果直接将父类的原型直接赋值给子类（简单赋值），会出现传址问题
+              - 父类的原型上的方法会被子类修改方法影响
+    */
+</script>
+</html>

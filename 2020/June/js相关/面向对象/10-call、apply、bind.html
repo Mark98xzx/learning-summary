@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function foo(name, age){
+        console.log(this, "姓名是" +name+",年龄是"+age)
+    }
+    // foo()
+
+    let obj = {
+        name: "张三"
+    }
+    foo.call(obj, "张三", 20)
+    foo.apply(obj, ["张三", 20])
+    foo.bind(obj)("张三", 20)
+    // bind: 返回一个新的函数
+
+    /*
+        call、apply、bind 
+            都是可以改变函数的this指向
+          不同：
+            1. call、apply 传参不同
+                - call：参数可以多个，以逗号隔开
+                - apply：参数只能传一个，而且是个数组
+            2. bind
+                - bind：返回的是一个新的函数，需要重新调用，参数放在重新调用括号中
+    */
+</script>
+</html>

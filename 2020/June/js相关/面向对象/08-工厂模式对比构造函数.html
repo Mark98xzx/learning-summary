@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 工厂模式
+    function Person(name){
+        let obj = {};
+        obj.name = name;
+        obj.age = 20;
+        obj.fn = function(){
+            console.log("fn..");
+        }
+    }
+    let zhangsan  = Person("张三");
+    // console.log(zhangsan.constructor===Person);
+
+    // 构造函数；
+    // function Person(){
+    //     this.name = name;
+    //     this.age = 20;
+    // }
+    // Person.prototype.fn = function(){
+    //     console.log("fn...");
+    // }
+    // let zhangsan  = new Person("张三");
+    // console.log( zhangsan.constructor===Person);
+    let str = "abc";
+    console.log(str.constructor===String);
+
+    /*
+        工厂模式对比构造函数
+          1. 没有解决对象识别的问题。即创建的所有实例都是 Object 类型。（不清楚是哪一个对象的实例）
+          2. 没有原型，占用内存 （prototype）
+    */
+
+</script>
+</html>

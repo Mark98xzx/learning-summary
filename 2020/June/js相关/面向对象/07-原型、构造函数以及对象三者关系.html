@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let temp;
+    function Person(name){
+        this.name = name;
+        this.age = 20;
+        
+    }
+    Person.prototype.fn = function(){
+        console.log("fn");
+        temp = this;
+    } 
+
+    
+    console.log( Person.prototype.constructor===Person); // true
+
+    let zhangsan = new Person("张三");
+    zhangsan.fn();
+
+    // console.log(zhangsan===temp)
+</script>
+</html>
