@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery.js"></script>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background: red;
+            margin-top: 10px;
+        }
+        .btn{
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">111</div>
+    <div class="box">222</div>
+    <button class="btn">点击</button>
+</body>
+<script>
+// document.querySelector(".box").onclick = function(){
+//     console.log(111);
+// }
+// $(".box").click(()=>{
+//     console.log(1111);
+// })
+// $(".box").on("click",()=>{
+//     console.log(222);
+// })
+// console.log($(".box"));
+
+// 情况一：类名 id名 标签名
+// $(".box")
+// 情况二： 函数
+// $(function(){
+//     console.log("ready...");
+// })
+// 情况三：原生节点；
+// $(document.querySelectorAll(".box")).click(()=>{
+//     console.log("click....");
+// })
+// then().then().then()
+// 链式操作；
+//  $(".box").eq(1).click(function(){
+//      console.log("点击了...");
+//  })
+// console.log($(".box").eq(0));
+// console.log($(".box").get(0));
+// end();
+// console.log($(".box").eq(0).end());
+// 情况一:获取样式 始终获取第一个；
+// let res =  $(".box").css("background");
+// console.log(res);
+// 情况二：设置
+// $(".box").css("background","blue");
+// 情况三：设置：
+// $(".box").css({background:"blue",width:300});
+// $(".btn").click(()=>{
+//     $(".box").animate({width:"300px"},function(){
+//         console.log("动画完成!!")
+//     });
+// })
+
+// wh :既可以设置宽度  也可以设置高度
+$.cssHooks['wh'] = {
+    get(ele){
+        console.log(ele);
+        return ele.offsetWidth + " " + ele.offsetHeight;
+    },
+    set(ele,newValue){
+        // console.log(ele,newValue);
+        ele.style["width"] = newValue;
+        ele.style["height"] = newValue;
+    }
+}
+
+// // get
+// let res =  $(".box").css("wh");
+// console.log(res);
+
+// set
+$(".box").css("wh","300px");
+
+
+// $(".box").animate({"width":300})
+
+
+
+</script>
+</html>
