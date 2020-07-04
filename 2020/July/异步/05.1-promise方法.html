@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // promise静态方法
+    let p1 = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(1111)
+            // reject("失败")
+        }, 1000)
+    })
+    let p2 = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(22222)
+            // reject("失败")
+        }, 2000)
+    })
+
+
+    //---------------------------------
+    // 直接调用 resolve reject 方法 不需要 new
+    // let res = Promise.resolve("success")
+    // console.log(res)
+    // let res2 = Promise.reject("error")
+    // console.log(res2)
+
+    // 所有promise对象都成功  返回 PromiseValue 组成的一个数组
+    // 有一个失败就得不到数组
+    Promise.all([p1, p2]).then(res => {
+        console.log(res)  // [1111, 22222]
+    })
+
+    // race 执行速度  拿到先执行的结果    race赛跑的意思
+    Promise.race([p1, p2]).then(res => {
+        console.log(res)  // 1111
+    })
+
+    // finally 不管成功还是失败都会执行到
+    p1.then(res => {
+        console.log(res)
+    }).catch(err => {
+        console.log(err)
+    }).finally(()=>{
+        console.log("成功与失败都会执行")
+    })
+</script>
+</html>

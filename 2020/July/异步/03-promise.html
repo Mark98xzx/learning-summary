@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 三种状态  pending;  resolved：成功（火狐：fullfilled）; rejected
+    // 如果没有调用 resolve 或者 reject ；Promise 是 pending 状态
+    let p1 = new Promise((resolve, reject) => {
+        // resolve("success")
+        // reject("error")
+        setTimeout(() => {
+            resolve("成功")
+            // reject("失败")
+        })
+    })
+    // console.log(p1) 
+    
+
+
+    // then 两个参数：onresolve，onreject  链式操作
+    // p1.then(res => {
+    //     console.log(res)
+    // }, err => {
+    //     console.log(err)
+    // })
+
+
+
+    // then 三种返回值   ----> 都会返还Promise对象  所以链式操作
+    // 第一种：什么都没有返还
+    let res = p1.then(res => {
+
+    })
+    console.log(res)
+    // 第二种：返还参数
+    let res2 = p1.then(res => {
+        return 111
+    })
+    console.log(res2)
+    // 第三种：返还Promise
+    let res3 = p1.then(res => {
+        return new Promise(resolve => {
+            resolve("返还的值")
+        })
+    })
+    console.log(res3)
+
+
+    // 链式操作
+    p1.then(res=>{
+        return new Promise(resolve=>{
+            resolve(111)
+        });
+    }).then(res=>{
+        console.log(res);  //promisevalue
+    }).catch(err=>{
+        console.log(err);
+    })
+</script>
+</html>

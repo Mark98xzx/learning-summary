@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // promise
+    let p1 = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(1111)
+            // reject("失败")
+        }, 1000)
+    })
+    let p2 = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(22222)
+            // reject("失败")
+        }, 2000)
+    })
+
+    // Promise 调用
+    // p1.then(res => {
+    //     console.log(res)
+    //     return p2
+    // }).then(res => {
+    //     console.log(res)
+    // }).catch(err => {
+    //     console.log(err)
+    // })
+
+    // 使用 async await 改写 Promise
+    // 异步过程  同步写法  await后面跟Promise对象
+    // async function asyncFn(){
+    //     let res1 = await p1
+    //     console.log(res1)
+    //     let res2 = await p2
+    //     console.log(res2)
+    // }
+    // asyncFn()
+
+    // 处理失败信息error
+    async function asyncFn1(){
+        try{
+            let res1 = await p1
+            console.log(res1)
+            let res2 = await p2
+            console.log(res2)
+        } catch (err){
+            console.log(err)
+        }
+    }
+    asyncFn1()
+
+
+    
+</script>
+</html>

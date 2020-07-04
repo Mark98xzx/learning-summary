@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 同步阻塞 （同步非阻塞）
+    // 异步非阻塞 （异步阻塞）
+
+    // 同步
+    function fn(){
+        console.log("fn...")
+    }
+    fn()
+    console.log(22222)
+
+    // 异步
+    // setTimeout setInterval
+    function fn1(){
+        setTimeout(() => {
+            console.log("fn1...")
+        }, 100)
+    }
+    fn1()
+    console.log(4444)
+
+    // ---------------------------------
+    // 解决异步
+    // 回调函数 callback
+    function fn2(cb){
+        setTimeout(() => {
+            console.log("fn2....")
+            cb && cb()
+        }, 100)
+    }
+    fn2(function(){
+        console.log(8888)
+    })
+
+</script>
+</html>

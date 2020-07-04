@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 加载图片 demo
+    // 回调方法
+    function loadingImg(cb){
+        let img = new Image()
+        img.src = "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1540109528,3311100791&fm=26&gp=0.jpg"
+        img.onload = function(){
+            // console.log("图片加载完成")
+            // cb && cb()
+            document.body.appendChild(img)
+        }
+    }
+
+    // loadingImg(function(){
+    //     console.log("图片加载完成")
+    // })
+
+    // Promise 方法
+    function loadingImgPromise(){
+        return new Promise((resolve, reject) => {
+            let img = new Image()
+            img.src = "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1540109528,3311100791&fm=26&gp=0.jpg"
+            // img.src = "https://ss3.bdstatic.com11/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1540109528,3311100791&fm=26&gp=0.jpg"
+            img.onload = function(){
+                // console.log("图片加载完成")
+                resolve("图片加载完成")
+                document.body.appendChild(img)
+            }
+            img.onerror = function(){
+                reject("图片加载失败")
+            }
+        })
+    }
+    loadingImgPromise().then(res => {
+        console.log(res)
+    }).catch(err => {
+        console.log(err)
+    })
+</script>
+</html>
