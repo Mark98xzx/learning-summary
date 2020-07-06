@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script type="module">
+    let obj = {
+        name: "张三",
+        age: 20
+    }
+
+    let newObj = new Proxy(obj, {
+        get(target, key){
+            console.log("get....")
+            return target[key]
+        },
+        set(target, key, newValue){
+            console.log("set....", newValue)
+            // target[key] = newValue;
+            // 在严格模式：需要返还一个return true
+            // return true
+            // 或者 Reflect.set  set的映射
+            return Reflect.set(target, key, newValue)
+        }
+    })
+    newObj.name;
+    newObj.name = "王五"
+</script>
+</html>

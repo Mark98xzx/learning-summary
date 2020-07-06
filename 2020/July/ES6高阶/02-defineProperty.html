@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let obj = {
+        name: "张三"
+    }
+    // obj.name = "李四"
+    // console.log(obj)
+
+    /*
+        Object.defineProperty
+            - configurable:
+                - 默认设置是 false; 使用delete删除属性,删除不掉
+            - enumerable:
+                - 默认设置是 false; 是否可枚举属性
+
+    */
+    Object.defineProperty(obj, "name", {
+        configurable: false,
+        enumerable: true,
+        get(){
+            console.log("get....")
+            return "张三"
+        },
+        set(newValue){
+            console.log("set...", newValue)
+        }
+    })
+    // obj.name
+    // obj.name = "王五"
+    delete obj.name;
+    console.log(obj)
+
+
+    
+    //---------------------------------------------
+    let newObj = Object.defineProperty({}, "name", {
+        configurable: false,
+        enumerable: true,
+        get(){
+            console.log("get....")
+            return "张三"
+        },
+        set(newValue){
+            console.log("set...", newValue)
+        }
+    })
+    console.log(newObj)
+</script>
+</html>
