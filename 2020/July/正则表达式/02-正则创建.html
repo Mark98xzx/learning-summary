@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 正则表达式创建
+    // 1. 字面量创建
+    let str = "abc1231dfaf123213fda"
+    // let reg = /\d+/g;
+    let reg = /abc/g; // 精确匹配，比较少这样用
+    let res = str.match(reg)
+    console.log(res)
+
+    // 匹配为变量 就不能使用字面量创建正则表达式
+    let abc = "1234"
+    // let reg2 = /abc/g; // 注意：不能这样使用
+
+    // 2. 构造函数创建 
+    // 
+    let str2 = "abc1231dfaf123213fda"
+    let reg3 = new RegExp("\d+","g")
+    console.log(str2.match(reg3))  // ["d", "d"]
+    let reg4 = new RegExp("\\d+","g") // 注意：字面量创建是/d；构造函数创建是//d（类似加转译）
+    console.log(str2.match(reg4))  // ["1231", "123213"]
+
+    // 可以 匹配 变量
+    let cde = "1234"
+    let reg5 = new RegExp(cde, "g")
+    console.log(cde.match(reg5))  // ["1234"]
+
+
+</script>
+</html>

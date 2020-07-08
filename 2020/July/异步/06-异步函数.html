@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function delay(time, fn){
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                fn()
+                resolve("完成")
+            }, time)
+        })
+    }
+
+    async function fn(){
+        let val = await delay(1000, function(){
+            console.log(1)
+        })
+        console.log(val)
+        let val2 = await delay(1000, function(){
+            console.log(2)
+        })
+        let val3 = await delay(1000, function(){
+            console.log(3)
+        })
+    }
+
+    fn()
+
+</script>
+</html>

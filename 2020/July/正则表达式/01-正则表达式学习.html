@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 正则表达式
+    // 1. 查找  2. 替换   3. 验证   4. 分割
+
+    let str = "afdsa234fda231dfsa111fdsaf444";
+    // 获取所有的数字，并放到一个数组  // [234, 231]
+    // 1. 循环查找
+    function getNumber(str){
+        let arr = []
+        let temp = ""
+        for (let i = 0; i < str.length; i++) {
+            if(!isNaN(str[i])){
+                // 数字
+                temp += str[i]
+            }else{
+                if(temp != ""){
+                    arr.push(parseInt(temp));
+                    temp = ""
+                }
+            }
+        }
+        if(temp!=""){
+            arr.push(parseInt(temp))
+        }
+        return arr
+    }
+    console.log(getNumber(str))
+
+    // 2. 使用正则
+    // d: 数字
+    let reg = /\d+/g;
+    let arr2 = str.match(reg);
+    console.log(arr2)
+
+
+</script>
+</html>

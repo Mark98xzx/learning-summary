@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 匹配模式
+    // g i m s u y
+    /*
+        g: 全局匹配
+        i: 忽略大小写
+        m: 多行模式
+        s：让 "." 匹配到换行
+        u: 匹配unicode编码
+        y: 粘性模式
+    */
+    
+    //  g: 全局匹配
+    let str = "abc123fdaf123fdasf"
+    let reg = /\d+/
+    let reg2 = /\d+/g
+    console.log(str.match(reg)) // ["123", index: 3, input: "abc123fdaf123fdasf", groups: undefined]
+    console.log(str.match(reg2)) // ["123", "123"]
+
+    // i: 忽略大小写
+    let str2 = "abcABc"
+    let reg3 = /abc/g;
+    let reg4 = /ABC/g;
+    let reg5 = /ABC/gi;
+    console.log(reg3.test(str2)) // true
+    console.log(reg4.test(str2)) // false
+    console.log(reg5.test(str2)) // true
+
+    // m: 多行模式
+    let str3 = `abc
+    efg
+    gij`;
+    let reg6 = /^\w/g;
+    let reg7 = /^\w/gm;
+    console.log(str3.replace(reg6, "*")) // *bc
+                                            // efg
+                                            // gij
+    console.log(str3.replace(reg7,"*"))
+
+    // s：让 "." 匹配到换行
+    let str4 = `abcefg`
+    let str5 = `abc
+    efg`
+    let reg8 = /^a.*g$/g;
+    let reg9 = /^a.*g$/gs;
+    console.log(reg8.test(str4)) // true
+    console.log(reg8.test(str5)) // false
+    console.log(reg9.test(str5)) // true
+
+    // u: 匹配unicode编码
+    let str6 = "a"
+    let reg10 = /\u{61}/g;  // {}：第一可以表示 次数(默认)； 第二可以表示字符的unicode编码
+    let reg11 = /\u{61}/gu;
+    console.log(reg10.test(str6))  // false
+    console.log(reg11.test(str6))  // true
+
+    // y: 粘性模式
+    // 非粘性模式
+    let str7 = "12345fdafdsa4324"
+    let reg12 = /\d/g;
+    // console.log(reg12.exec(str7)) // ["1", index: 0, input: "12345fdafdsa4324", groups: undefined]
+    // console.log(reg12.exec(str7)) // ["2", index: 1, input: "12345fdafdsa4324", groups: undefined]
+    // console.log(reg12.exec(str7)) // ["3", index: 2, input: "12345fdafdsa4324", groups: undefined]
+    // console.log(reg12.exec(str7)) // ["4", index: 3, input: "12345fdafdsa4324", groups: undefined]
+    // console.log(reg12.exec(str7)) // ["5", index: 4, input: "12345fdafdsa4324", groups: undefined]
+    // console.log(reg12.exec(str7)) // ["4", index: 12, input: "12345fdafdsa4324", groups: undefined]
+
+    // 粘性模式
+    let str8 = "12345fdafdsa4324"
+    let reg13 = /\d/gy;
+    console.log(reg13.exec(str8)) // ["1", index: 0, input: "12345fdafdsa4324", groups: undefined]
+    console.log(reg13.exec(str8)) // ["2", index: 1, input: "12345fdafdsa4324", groups: undefined]
+    console.log(reg13.exec(str8)) // ["3", index: 2, input: "12345fdafdsa4324", groups: undefined]
+    console.log(reg13.exec(str8)) // ["4", index: 3, input: "12345fdafdsa4324", groups: undefined]
+    console.log(reg13.exec(str8)) // ["5", index: 4, input: "12345fdafdsa4324", groups: undefined]
+    console.log(reg13.exec(str8)) // null
+
+</script>
+</html>

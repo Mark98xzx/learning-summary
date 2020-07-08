@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //1. (): 分组
+    let str = "abababfdsafds";
+    // 匹配ab
+    // let reg = /ababab/g;
+    // let reg = /ab{3}/g; // 是匹配 b 三次；而不是ab
+    let reg = /(ab){3}/g;
+    console.log(reg.test(str)) // true
+
+    // 提取值
+    let str2 = "2020-07-07";
+    let reg2 = /\d{4}-\d{2}-\d{2}/;
+    console.log(str2.match(reg2)) // ["2020-07-07", index: 0, input: "2020-07-07", groups: undefined]
+    // 想要直接获取 年 月 日
+    let str3 = "2020-07-07";
+    let reg3 = /(\d{4})-(\d{2})-(\d{2})/;
+    console.log(str3.match(reg3)) //  ["2020-07-07", "2020", "07", "07", index: 0, input: "2020-07-07", groups: undefined]
+    console.log(RegExp.$1) // 2020
+    console.log(RegExp.$2) // 07
+    console.log(RegExp.$3) // 07
+
+    // 替换
+    let str4 = "2020-07-08";
+    let reg4 = /(\d{4})-(\d{2})-(\d{2})/;
+    // 需求："2020-07-07" 格式改 ==>  "07/08/2020" 2020不能写死
+    // str4.replace(reg, "07/08/2020")
+    let res4 = str4.replace(reg4, "$2/$3/$1")
+    console.log(res4) // 07/08/2020
+
+    // replace
+    let str5 = "2020-07-08"
+    let reg5 = /(\d{4})-(\d{2})-(\d{2})/
+    let res5 = str5.replace(reg5, function(arg, year, mouth, data){
+        return mouth + "/" + data + "/" + year
+    })
+    console.log(res5) // 07/08/2020
+    
+
+    // 反向引用
+    let className = "news-container-nav"  // news_container_nav
+    let reg6 = /\w{4}(-|_)\w{9}(-|_)\w{3}/;
+    let res6 = reg6.test(className)
+    console.log(res6) // true
+    // 如果匹配到第一个是 横线（或下划线） 后面也要统一是 横线（或下划线）
+    let className2 = "news-container_nav"  // news_container_nav
+    let reg7 = /\w{4}(-|_)\w{9}(\1)\w{3}/;
+    let res7 = reg7.test(className2)
+    console.log(res7) // false
+
+
+    // 2. []: 字符集合：2.1 匹配字符  2.2 匹配数字
+    let str8 = "My name is LiLei"
+    let reg8 = /Li(L|l)ei/;
+    console.log(reg8.test(str8)) // true
+
+    let str9 = "My name is LiLei"
+    let reg9 = /Li[Ll]ei/;
+    console.log(reg9.test(str9)) // true
+
+    let str10 = "My name is LiL1ei"
+    let reg10 = /[0-9]/g;
+    // 匹配一段：[0-9] [a-z] [A-Z] 是一个闭区间 包含前后两个值 （这个区间的ASCll编码必须是连续的）
+    console.log(reg10.test(str10)) // true
+
+    // 在 [] 中的 ^： 表示 非
+    let str11 = "My name is LiLei"
+    let reg11 = /[^0-9]/;
+    console.log(reg11.test(str11)) // true
+
+    // \d == [0-9]
+    // \w == [a-zA-Z0-9_]
+</script> 
+</html>

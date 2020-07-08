@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 位置相关
+    // ^  $  \b  \B
+    // ^: 匹配开始的位置
+    let str = "abedef"
+    // let reg = /^/g; // 在结开始的位置添加一个星号
+    let reg = /^\w/g;  // 匹配第一个字符替换星号
+    let res = str.replace(reg, "*")
+    console.log(res) // *bedef
+
+    // $: 匹配结尾的位置
+    let str2 = "abedef"
+    let reg2 = /$/g; // 在结尾的位置添加一个星号
+    // let reg3 = /\w$/g; //  匹配最后的一个字符替换星号
+    let res2 = str2.replace(reg2, "*")
+    console.log(res2) // abedef*
+
+    // \b：边界符
+    let str3 = "this is a book";
+    let reg3 = /is/g;
+    let res3 = str3.match(reg3)
+    console.log(res3) // ["is", "is"]
+
+    // \b：边界符
+    // 边界：非\w的 都是边界
+    let str4 = "this is a book";
+    let reg4 = /\bis\b/g;
+    let res4 = str4.match(reg4)
+    console.log(res4) // ["is"]
+
+    // \B: 非边界
+    let str5 = "this is a book";
+    let reg5 = /\B\w{2}\b/g;
+    let res5 = str5.match(reg5)
+    console.log(res5) // ["is", "ok"]
+</script>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 数量相关：
+    // {}  ？ +  *
+    let str = "abceeeffd";
+    let reg = /ceeef/g;
+    console.log(reg.test(str)) // true
+
+    // {} 固定次数
+    let str2 = "abceeeffd";
+    let reg2 = /ce{3}f/g;
+    console.log(reg2.test(str2)) // true
+
+    // {} 一个区间 闭区间包含的关系
+    let str3 = "abceeeeffd";
+    let reg3 = /ce{3,4}f/g;
+    console.log(reg3.test(str3)) // true
+
+    // {} 一个区间到无穷大
+    let str4 = "abceeeeffd";
+    let reg4 = /ce{1,}f/g;
+    console.log(reg4.test(str4)) // true
+
+    // ? --->  {0,1}
+    // + --->  {1,}
+    // * --->  {0,}
+    let str5 = "my name is lilei";
+    let reg5 = /my\s+name/g;
+    // let reg5 = /my\s{1,}name/g;
+    console.log(reg5.test(str5)); // true
+
+
+    // 默认是贪婪匹配
+    let str6 = "123456789"
+    let reg6 = /\d{2,4}/g;  //贪婪匹配
+    let res = str6.match(reg6)
+    console.log(res) // ["1234", "5678"]
+
+    // 惰性匹配 非贪婪匹配
+    let str7 = "123456789"
+    let reg7 = /\d{2,4}?/g;  //惰性匹配  非贪婪匹配
+    let res7 = str7.match(reg7)
+    console.log(res7) // ["12", "34", "56", "78"]
+
+
+</script>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 元字符：有特殊函数非字母字符
+    /*
+        1. 字符相关
+        2. 数量相关
+        3. 位置相关
+        4. 括号相关
+    */
+    
+    // 1. 字符相关:
+    /*
+        1. 字符相关:
+            \w  \W  \d  \D  \s  \S
+                \w: 匹配: 数字、字母、下划线
+                \W: 匹配：非 数字、字母、下划线（刚好相反）
+                \d: 匹配数字
+                \D: 匹配非数字
+                \s: 匹配空格
+                \S: 匹配非空格
+    */ 
+
+    // /w 匹配: 数字、字母、下划线
+    // let str = "s"
+    // let str = "1"
+    let str = "_"
+    let reg = /\w/g;
+    console.log(reg.test(str)) // true
+
+    // \W: 匹配：非 数字、字母、下划线（刚好相反）
+    let str2 = "123fdfs";
+    let reg2 = /\W+/g;
+    console.log( reg2.test(str2)); // false
+
+    // \s :匹配空格；
+    let str3 = "abcfdsadfs";
+    let reg3 = /\s+/g;
+    console.log( reg3.test(str3)); // false
+
+    // \S: 匹配非空格
+    let str4 = "abcfdsadfs";
+    let reg4 = /\S+/g;
+    console.log( reg4.test(str4)); // true
+
+    // . : 非 \n \r \u2028 \u2029
+    /*
+        \n: 换行
+        \r: 回车
+    */
+
+    let str5 = `afb`
+    let reg5 = /a.b/;
+    console.log( reg5.test(str5));
+    
+</script>
+</html>

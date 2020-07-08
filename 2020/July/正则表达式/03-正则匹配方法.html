@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 正则匹配方法
+    // 1. 正则对象底下方法：1. test  2. exec
+    // 1.1 test
+    let str = "abc123fda123";
+    let reg = /\d+/g;
+    console.log(reg.test(str)) // true
+    let reg2 = /efg/g;
+    console.log(reg2.test(str)) // false
+    
+    // 1.2 exec
+    /*
+        exec
+            会基于上一次的结果来匹配  lastIndex
+            lastIndex：记录下一次查找的位置
+    */
+    let str2 = "abc123fda1234";
+    let reg3 = /\d+/g;
+    console.log(reg3.exec(str2)) // ["123", index: 3, input: "abc123fda1234", groups: undefined]
+    console.log(reg3.lastIndex) // 6 下一次从字符下标为6开始匹配
+    console.log(reg3.exec(str2)) // ["1234", index: 3, input: "abc123fda1234", groups: undefined]
+    console.log(reg3.exec(str2)) // null
+
+
+    // 2. 正则 字符串方法
+    // 2.1 splic  2.2 search 2.3 match 2.4 replace
+    // 2.1 splic 
+    let str3 = "abc123fda1234rt";
+    let arr =  str3.split(1);
+    console.log(arr) // ["abc", "23fda", "234rt"]
+    let arr2 = str3.split(/\d+/)
+    console.log(arr2) // ["abc", "fda", "rt"]
+
+    // 2.2 search 会忽略全局匹配, 始终找到的是第一个索引值；如果找不到返回 -1
+    let str4 = "abcdefghiejk";
+    // let reg4 = /e/;
+    let reg4 = /e/g;
+    let reg5 = /z/;
+    console.log(str4.search(reg4)) // 4
+    console.log(str4.search(reg5)) // -1
+
+    // 2.3 match
+    let str5 = "abc11defghiej222k";
+    let reg6 = /\d+/; // 局部匹配
+    let reg7 = /\d+/g; // 全局匹配
+    console.log(str5.match(reg6))
+    console.log(str5.match(reg7)) // ["11", "222"]
+
+    // 2.4 replace 替换
+    let str6 = "abc11defghiej222k";
+    let reg8 = /\d/g;
+    console.log(str6.replace(reg8, "*")) // abc**defghiej***k
+
+    // replace 第二种写法
+    /*
+        replace(reg, callback)
+            - reg
+            - callback
+                - arg: 匹配到的字符串
+                -  ：分组的内容
+                -  ：设置匹配项
+                -  ：
+    */
+    let resn = str6.replace(reg, function(arg){
+        console.log(arg)
+        return "*"
+    })
+    console.log(resn) // abc*defghiej*k
+
+</script>
+</html>

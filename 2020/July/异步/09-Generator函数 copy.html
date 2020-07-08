@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function*fn(){
+        yield new Promise((resolve, reject) => {
+            setTimeout(() => {
+                console.log(1)
+                resolve("第一个yield执行完了")
+            }, 500)
+        });
+        yield new Promise((resolve, reject) => {
+            setTimeout(() => {
+                console.log(2)
+                resolve("第二个yield执行完了")
+            }, 500)
+        });
+        yield new Promise((resolve, reject) => {
+            setTimeout(() => {
+                console.log(3)
+                resolve("第三个yield执行完了")
+            }, 500)
+        });
+    }
+
+    // let f = fn()
+    // console.log(f)
+
+    // 执行
+    // console.log(f.next()) // {value: 1, done: false}
+    // for(let val of f){
+    //     console.log(val)
+    // }
+
+    co(fn)
+    function co(fn){
+        let f = fn()
+        next()
+        function next(){
+            let result = f.next()
+            // result.done 不是true
+            if(!result.done){
+                // 上一个异步走完了， 再执行下一个异步
+                result.value.then((res) => {
+                    console.log(res)
+                    next()
+                })
+            }
+            console.log(result)
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 数组
+    let arr = ["a", "b", "c", "d"]
+    for(let attr in arr){
+        console.log(attr) // forin数组是遍历下标
+    }
+    for(let val of arr){
+        console.log(val)
+    }
+
+    // 对象
+    let obj = {
+        a: 1,
+        b: 2,
+        a: 3
+    }
+    // for(let objVal of obj){  // 程序报错 obj is not iterable  obj不是一个可迭代对象
+    //     console.log(objVal)
+    // }
+
+    console.dir(arr)
+    console.dir(obj)  // 没有 Symbol.iterator 迭代器
+
+</script>
+</html>

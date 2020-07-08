@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 迭代器
+    let obj = {
+        a: 1,
+        b: 2,
+        c: 3
+    }
+    obj[Symbol.iterator] = function(){
+        // 迭代协议
+        let values = Object.values(obj)
+        console.log(values)
+        let index = 0
+
+
+        // 如果没有返回值  程序报错  Result of the Symbol.iterator method is not an object
+        return {
+            // 固定函数
+            next(){
+                // 也需要返回值
+                // console.log(123)
+                // return {
+                //     value: "1", // 循环过程的值
+                //     done: true, // done 代表循环是否完成，true 已完成； false未完成 
+
+                // }
+                if(index >= values.length){
+                    return {
+                        done:true
+                    }
+                }else{
+                    return {
+                        done: false,
+                        value: values[index++]
+                    }
+                }
+                
+            }
+        }
+    }
+
+    // for (const val of obj) {
+    //     console.log(val)
+    // }
+
+    // for-of 执行过程
+    // 第0次
+    let values = obj[Symbol.iterator]()
+    console.log(values.next()) // {done: false, value: 1}
+    console.log(values.next()) // {done: false, value: 2}
+    console.log(values.next()) // {done: false, value: 3}
+    console.log(values.next()) // {done: true}
+</script>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 命名分组
+    let str = "2020-07-08"
+    let reg = /(\d{4})-(\d{2})-(\d{2})/;
+    console.log(str.match(reg)) // ["2020-07-08", "2020", "07", "08", index: 0, input: "2020-07-08", groups: undefined]
+
+    let str2 = "2020-07-08"
+    let reg2 = /(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})/;
+    console.log(str2.match(reg2)) // ["2020-07-08", "2020", "07", "08", index: 0, input: "2020-07-08", groups: {…}]
+
+    // 零宽断言
+    // 正向肯定（否定）零宽断言
+    let str3 = "iphone3iphone4iphone5iphonenumber" 
+    // 需求：将有数字的iphone替换成 中文苹果
+    let reg3 = /iphone\d/g;
+    let reg4 = /iphone(?=\d)/g;  // 正向肯定零宽断言
+    let reg5 = /iphone(?!\d)/g;  // 正向否定零宽断言
+    console.log(str3.replace(reg3,"苹果"))  //苹果苹果苹果iphonenumber
+    console.log(str3.replace(reg4,"苹果"))  //苹果3苹果4苹果5iphonenumber
+    console.log(str3.replace(reg5,"苹果"))  //iphone3iphone4iphone5苹果number
+
+    // 负向肯定（否定）零宽断言
+    let str4 = "10px20px30pxipx"
+    let reg6 = /\d+px/g;
+    let reg7 = /(?<=\d+)px/g; // 负向肯定零宽断言
+    let reg8 = /(?<!\d+)px/g; // 负向否定零宽断言
+    console.log(str4.replace(reg6,"像素")) // 像素像素像素
+    console.log(str4.replace(reg7,"像素")) // 10像素20像素30像素ipx
+    console.log(str4.replace(reg8,"像素")) // 10px20px30pxi像素
+</script>
+</html>
