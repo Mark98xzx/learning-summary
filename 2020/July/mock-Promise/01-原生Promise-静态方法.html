@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>原生 Promise</h1>
+</body>
+<script>
+    // 宏任务： setTimeout  setInterval
+    // setTimeout(() => {
+    //     console.log("setTimeout....")
+    // }, 0)
+
+    // // 原生 promise 底层实现是C语言实现的
+    // // Promise 是 微任务； 还有 MutationObserver ；以及 process.nextTick
+    // // 代码主线程的宏任务 ； 然后宏任务分为（宏任务和微任务）；会优先执行微任务，然后再执行宏任务
+    // // 所以先执行 promise ；再执行 setTimeout
+    // let p = new Promise((resolve, reject) => {
+    //     resolve("success")
+    //     // reject("err")
+    // })
+    // // console.log(p)
+
+    // // then: 2个参数  onresolved  onrejected
+    // p.then(res => {
+    //     console.log("1", res)
+    // }, err=> {
+    //     console.log(err)
+    // })
+
+    // // then：返还值： 1. 没有返还 2.返还普通值；3.返还promise对象； 
+    // // 总结：返还promise对象  --->  目的：链式操作
+    // p.then(res => {
+    //     console.log("2", res)
+    // })
+
+    // 静态方法
+    // resolve
+    let p2 = Promise.resolve("111");
+    console.log(p2)
+
+    // catch 方法
+    let p3 = new Promise((resolve, reject)=>{
+        reject("err...");
+    })
+    p3.then(res=>{
+        console.log(res);
+    }).catch(err=>{
+        console.log(err);
+    })
+
+    //all 静态方法
+    let pp1 = new Promise(resolve=> {
+        setTimeout(()=>{
+            resolve(111)
+        }, 1000)
+    })
+    let pp2 = new Promise(resolve => {
+        setTimeout(()=>{
+            resolve(222)
+        }, 2000)
+    })
+    Promise.all([pp1, pp2]).then(res => {
+        console.log(res) // [111, 222]
+    })
+
+    // race 静态方法
+    Promise.race([pp1, pp2]).then(res => {
+        console.log(res) // 111
+    })
+
+    // finally
+    pp1.then(res => {
+        console.log(res)
+    }).finally(() => {
+        console.log("执行了finally")
+    })
+</script>
+</html>

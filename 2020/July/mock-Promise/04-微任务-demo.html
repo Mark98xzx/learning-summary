@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 微任务回调
+    let observer = new MutationObserver(function(){
+        console.log("微任务回调")
+    })
+    observer.observe(document.body, {
+        attributes: true  // 配置：监听属性变化
+    })
+    document.body.setAttribute("sz", Math.random())
+</script>
+</html>

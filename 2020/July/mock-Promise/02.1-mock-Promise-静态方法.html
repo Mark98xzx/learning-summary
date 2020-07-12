@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>mock-Promise</h1>
+</body>
+<script src="./02-mock-Promise.js"></script>
+<script>
+    // // 修改加入队列后，新的问题：
+    // // 会先执行 这个定时器，再执行js文件 加入队列的定时器
+    // // 跟原生相反
+    // // 代码主线程是宏任务 ； 然后宏任务分为（宏任务和微任务）；会优先执行微任务，然后再执行宏任务
+    // setTimeout(() => {
+    //     console.log("setTimeout....")
+    // }, 0)
+
+    // // 原生 js 模拟 Promise
+    // let p = new KPromise((resolve, reject) => {
+    //     // 执行回调
+    //     // setTimeout(() => {
+    //         // resolve("success")
+    //     // }, 100)
+    //     reject("err")
+    // })
+    // // console.log(p)
+
+    // // then  加入队列   //出现了一个问题：先执行 后加入了；
+    // // 改成 先加入队列，后执行（在js中添加定时器）；
+    // // p.then(res=> {
+    // //     console.log(res)
+    // // }, err=>{
+    // //     console.log(err)
+    // // })
+
+    // // -------------------------------------
+    // // 返还值
+    // let res = p.then(res => {
+    //     console.log(res)
+    //     // return 111;
+    //     // return new KPromise(resolve => {
+    //     //     resolve("返还的KPromise")
+    //     // })
+    // }, err => {
+    //     console.log(err)
+    // })
+    // // console.log("??",  res)
+    // // then 始终返还的 KPromise 对象；---> 从而到达 链式调用
+    // // res.then(res => {
+    // //     console.log(res)
+    // // })
+
+
+    //-------------------------------------------------
+    // 静态方法
+    let p2 = KPromise.resolve("12313")
+    console.log(p2)
+
+    let p3 = KPromise.reject("321321")
+    console.log(p3)
+
+    // catch 方法
+    let p4 = new KPromise((resolve, reject)=>{
+        reject("err...");
+    })
+    p4.then(res=>{
+        console.log(res);
+    }).catch(err=>{
+        console.log(err);
+    })
+
+    //all 静态方法
+    let pp1 = new Promise(resolve=> {
+        setTimeout(()=>{
+            resolve(111)
+        }, 1000)
+    })
+    let pp2 = new Promise(resolve => {
+        setTimeout(()=>{
+            resolve(222)
+        }, 2000)
+    })
+    Promise.all([pp1, pp2]).then(res => {
+        console.log(res) // [111, 222]
+    })
+
+    // race 静态方法
+    Promise.race([pp1, pp2]).then(res => {
+        console.log(res) // 111
+    })
+</script>
+</html>

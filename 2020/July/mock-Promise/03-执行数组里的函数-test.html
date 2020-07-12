@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 执行数组里的函数
+    let arr = [function(){
+        console.log(1111)
+    }, function(){
+        console.log(2222)
+    }, function(){
+        console.log(3333)
+    }]
+
+    
+    // while循环：会依次将函数 推出来 进行执行
+    let cb;
+    while(cb=arr.shift()){
+        cb()
+    }
+
+    // console.log('other', arr.shift)
+</script>
+</html>
