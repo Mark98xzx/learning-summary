@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Document
+        style.
+            .mydiv{
+                width: 200px;
+                height: 200px;
+                background: red;
+            }
+    body
+        h1 我是标题
+        div 我是div
+        div(class="mydiv") 我是类名 mydiv
+        .mydiv(style={width:"100px",height:"100px",background:"blue"}) 我是div2
+        //- 我是注释
+        //-
+            我是第一行
+            我是第二行w
+        // 我是html注释
+        //
+            我是第一行
+            我是第二行
+
+        - let str = "你好"
+        p #{str}
+        p #{data}
+
+        //- 循环
+        ul
+            each item in users
+                li 姓名是 #{item.name}; 年龄是：#{item.age}; 身高是：#{item.height}
+                
+        - for(let i=0; i<4;i++)
+            span 我是循环出来的数据 #{i}
+
+        - let num = 1
+            case num
+                when 1
+                    p num 是一
+                when 2
+                    p num 是二
+                default
+                    p num 是其他值
+
+        mixin mydiv
+            div 我是非常非常非常常用的div
+        +mydiv
+        +mydiv
+
+        mixin pet(name, sex)
+            p 这是一只#{name}；它的性别是#{sex}
+        +pet("狗狗", "公")
+        +pet("喵咪", "母")
+
+        include common.pug
+
+        script(type="text/javascript").
+            console.log('123456')
+
+        
+        script(type="text/javascript").
+            console.log(1111);
+            console.log([]==[])
+            console.log([]===[])
