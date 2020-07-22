@@ -1,0 +1,47 @@
+body{
+    background: rgb(41, 42, 43);
+}
+li{
+    list-style: none;
+}
+.btnStyle{
+    display: block;
+    float: left;
+    width: 120px;
+    height: 38px;
+    border: 1px solid #c9c9c9;
+    text-align: center;
+    line-height: 38px;
+    color:  #c9c9c9;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.headContainer{
+    margin-top: 10%;
+    width: 80%;
+    height: 50px;
+    margin-left: 10%;
+    margin-right: 10%;
+    color: white;
+}
+
+.listContainer{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.myul{
+    display: flex;
+    color: #c9c9c9;
+}
+.myul li {
+    flex:1;
+}
+.myul input{
+    margin-right: 20px;
+}
+a.btnStyle:hover{
+    color: white;
+    border: 1px solid white;
+}
+
+

@@ -1,0 +1,44 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(http-equiv='X-UA-Compatible', content='ie=edge')
+    link(rel='stylesheet', type='text/css', href='css/list.css')
+    script(src="js/list.js" type="text/javascript")
+    title Document
+  body
+    button.changeSkin 换肤
+    .singerContainer
+      img.headImg(src='img/singer.jpg')
+      .singerRight
+        span.singerName 薛之谦
+        span.singerDetail 外文名：Joker 国籍：中国 出生地：上海 职业：歌手、演员、主持人
+        span
+          span.titleKey 单曲
+          span.titleValue 286
+          span.titleKey 专辑
+          span.titleValue 15
+          span.titleKey MV
+          span.titleValue 262
+        .mytbn
+          span.hotSong 播放热门歌曲
+          span.attention 关注1316.4万
+    .songList
+      .hotSongList
+        h2 热门歌曲
+      ul.listContainer.grayWord
+        li.grayWord
+        li 歌曲
+        li 专辑
+        li 时长
+    each val,key in musicData
+      ul(class="listContainer "+(key%2==0?"grayBg":"") )
+        li.grayWord #{key+1}
+        li #{val.songName}
+        li #{val.album}
+        li.grayWord #{val.time}
+        span(class="btnController" onclick="showDetail("+JSON.stringify(val)+")")
+          a(href='#')
+            img(src='img/play.png')
+          img(src='img/add.png')

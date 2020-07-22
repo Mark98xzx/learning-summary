@@ -1,0 +1,107 @@
+li{
+    list-style: none;
+}
+.singerContainer{
+    height: 250px;
+    margin-top: 40px;
+    margin-bottom: 35px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.headImg{
+    border-radius: 50%;
+    width: 250px;
+    margin-right: 5%;
+    margin-left: 5%;
+}
+.singerRight{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+}
+.singerName{
+    font-size: 38px;
+    font-weight: 400;
+}
+.singerContainer span{
+    margin-bottom: 10px;
+}
+.titleKey{
+    color: #000000;
+    font-size: 18px;
+    margin-right: 10px;
+
+}
+.titleValue{
+    font-size: 24px; 
+    margin-right: 15px;
+}
+.hotSong{
+    width:178px;
+    height: 38px;
+    background: #31c27c;
+    border: 1px solid #31c27c;
+    text-align: center;
+    color: white;
+    line-height: 38px;
+    display: block;
+    float: left;
+}
+.attention{
+    display: block;
+    height: 38px;
+    line-height: 38px;
+    width: 180px;
+    float: left;
+    border: 1px solid #c9c9c9;
+    text-align: center;
+    margin-left: 10px;
+}
+.mytbn{
+    margin-top: 20px;
+}
+.songList{
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.listContainer{
+    display: flex;
+    flex-direction: row;
+}
+.grayWord{
+    color: #999;
+}
+.listContainer li{
+    flex: 5;
+    height: 50px;
+    line-height: 50px;
+    position: relative;
+}
+.listContainer li:nth-child(1){
+    flex: 1;
+    height: 50px;
+    line-height: 50px;
+}
+.listContainer li:nth-child(4){
+    flex: 1;
+}
+.btnController{
+    position: absolute;
+    left: 30%;
+    display: none;
+}
+.btnController img{
+    width: 40px;
+    margin-left: 10px;
+}
+.grayBg{
+    background: #fbfbfd;
+}
+.changeSkin{
+    width: 100px;
+    height: 30px;
+    background: rgb(97,190,130);
+    color: white;
+    font-size: 14px;
+}
