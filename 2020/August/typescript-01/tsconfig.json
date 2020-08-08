@@ -1,0 +1,8 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist",
+        "target": "es6",
+        "watch": true
+    },
+    "include": ["./src/**/*"] // 看配置文件放在哪里，如果放 configs文件中 ["../src/**/*"]
+}
