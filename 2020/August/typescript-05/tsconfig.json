@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist",
+        "target": "es6",
+        "watch": true,
+        "strictNullChecks": true,
+        "noImplicitAny": true,
+        // "lib": ["es6", "dom"],
+    },
+    "include": ["./src/**/*"]
+}
