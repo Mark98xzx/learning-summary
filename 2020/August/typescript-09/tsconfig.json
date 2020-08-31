@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist1",
+        "target": "es5",
+        "watch": true,
+        "strictNullChecks": true,
+        "noImplicitAny": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true
+    },
+    "include": ["./src/**/*"]
+}
