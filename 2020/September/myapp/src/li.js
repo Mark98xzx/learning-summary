@@ -1,11 +1,7 @@
 import React from "react";
-import Li from './li'
-export default class List extends React.Component {
+export default class Li extends React.Component {
   state={
     edit: false
-  }
-  componentDidUpdate(){
-    
   }
   render() {
     let {data,remove,changeSelect} = this.props;
@@ -21,18 +17,13 @@ export default class List extends React.Component {
               onChange={({target})=>{
                 console.log(target.checked)
                 changeSelect(item.id,target.checked)
-              }}
-              />
+              }} />
             <p onDoubleClick={()=>{
               this.setState({
-                edit: true
+                edit
               })
             }}>{item.content}</p>
-            <textarea onBlur={()=>{
-                this.setState({
-                  edit: false
-                })
-              }} ></textarea>
+            <textarea></textarea>
             <a onClick={()=>{
               remove(item.id)
             }}>删除</a>

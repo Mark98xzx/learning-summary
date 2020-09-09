@@ -18,12 +18,14 @@ export default class App extends React.Component {
       {
         id: 0,
         name: "昵称",
-        content: "留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容"
+        content: "留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容",
+        check: true,
       },
       {
         id: 1,
         name: "昵称",
-        content: "留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容"
+        content: "留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容",
+        check: false,
       }
     ]
   }
@@ -32,7 +34,8 @@ export default class App extends React.Component {
     data.push({
       id: Date.now(),
       name: newTodoName,
-      content: newTodoCont
+      content: newTodoCont,
+      check: false
     })
     this.setState({
       data
@@ -44,17 +47,61 @@ export default class App extends React.Component {
       data: data.filter(item=>id!==item.id)
     })
   }
+  changeSelect=(id,check)=>{
+    // console.log(id,check)
+    let {data} = this.state;
+    data.forEach(item=>{
+      if(item.id===id){
+        item.check=check
+      }
+    })
+    // console.log(data)
+    this.setState({
+      data
+    })
+  }
+  removeBatch=()=>{
+    let {data} = this.state;
+    this.setState({
+      data: data.filter(item=>!item.check)
+    })
+  }
+  
   render() {
     let {data} = this.state;
-    return <div className="wrap">
+    return <section className="wrap">
+    <h2 className="title">留言板</h2>
       <div className="addMessage">
           <Add addTodo={this.addTodo}/>
 
-          <List
+      </div>
+      <List
             remove={this.remove}
+            changeSelect={this.changeSelect}
             data = {data}
           />
-        </div>
-    </div>;
+      <div className="sum">
+          <label>
+              <input type="checkbox"
+              onClick={({target})=>{
+                // console.log(target.checked)
+                // this.selectAll()
+                if (target.checked==true||target.checked==false){
+                  data.forEach(item=>{
+                    item.check=target.checked
+                  })
+                }
+                this.setState({
+                  data
+                })
+              }} />
+              <span>选中全部</span>
+          </label>
+          <a onClick={()=>{
+            this.removeBatch()
+          }}>删除选中项</a>
+          <p>当前选中{data.filter(item=>item.check).length}项，共{data.length}条留言</p>
+      </div>
+    </section>;
   }
 }

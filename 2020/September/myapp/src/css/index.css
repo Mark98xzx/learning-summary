@@ -69,6 +69,7 @@ body {
     border-top: 1px solid #ccc;
 }
 .messageList li {
+    position: relative;
     margin: 10px auto 0;
     width: 400px;
     border: 1px solid #ccc;
@@ -93,4 +94,50 @@ body {
     font:12px/24px "宋体";
     color: #0066bf;
     cursor: pointer;
+}
+.messageList input {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+.messageList textarea {
+    display: none;
+    box-sizing: content-box;
+    width: 370px;
+    height: 72px;
+    border: none;
+    background: #f3f3f3;
+    outline: none;
+    font: 12px/24px "宋体";
+    resize: none;
+    padding: 3px 5px;
+    margin: 2px auto;
+    text-indent: 2em;
+}
+.messageList .editing p {
+    display: none;
+}
+.messageList .editing textarea {
+    display: block;
+}
+.sum {
+    margin-top: 10px;
+    border-top: 1px solid #ccc;
+    padding:0 30px;
+    overflow: hidden;
+    font: 12px/30px "宋体";
+}
+.sum label {
+    float: left;
+}
+.sum input {
+    vertical-align: middle;
+}
+.sum a {
+    float: left;
+    margin-left: 10px;
+    color: #0066bf;
+}
+.sum p {
+    float: right;
 }
