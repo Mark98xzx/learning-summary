@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .scale {
+            position: relative;
+            border:none;
+        }
+        .scale:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            background: #000;
+            width: 100%;
+            height: 1px;
+            -webkit-transform: scaleY(0.5);
+            transform: scaleY(0.5);
+            -webkit-transform-origin: 0 0;
+            transform-origin: 0 0;
+        }
+        .sss {
+            height: 100px;
+        }
+        .scale1 {
+            position: relative;
+            border:none;
+            height: 200px;
+        }
+        .scale1:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            border: 1px solid #000;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            width: 200%;
+            height: 200%;
+            -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+            -webkit-transform-origin: left top;
+            transform-origin: left top;
+        }
+        .box-shadow-1px {
+            height: 100px;
+            box-shadow: inset 0px -1px 1px -1px rgb(214, 24, 24);
+        }
+    </style>
+</head>
+<body>
+    <div class="scale"></div>
+    <div class="sss"></div>
+    <div class="scale1"></div>
+    <div class="sss"></div>
+    <div class="box-shadow-1px"></div>
+</body>
+</html>
