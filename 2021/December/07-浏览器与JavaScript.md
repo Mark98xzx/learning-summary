@@ -17,3 +17,35 @@
     - **微任务：** promise、async/await、process.nextTick
     - 执行顺序：先执行主任务，执行完接着执行微任务，最后执行宏任务，按照条件的顺序依次执行
     - 这种循环机制又叫事件循环（event loop）
+
+- 案例
+    ```js
+        async function as1() {
+            console.log("as1 start");
+            await as2();
+            console.log("as1 end");
+        }
+
+        async function as2() {
+            console.log("as2");
+        }
+
+        console.log("script start");
+
+        setTimeout(function () {
+            console.log("setTimeout");
+        }, 0);
+
+        as1();
+
+        new Promise(function (resolve) {
+            console.log("prom1");
+            resolve();
+        }).then(function () {
+            console.log("prom2");
+        });
+        console.log("script end");
+
+        //script start => as1 start => as2 => prom1 => script end
+        //=> as1 start => prom2 => setTimeout
+    ```
