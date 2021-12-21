@@ -47,5 +47,5 @@
         console.log("script end");
 
         //script start => as1 start => as2 => prom1 => script end
-        //=> as1 start => prom2 => setTimeout
+        //=> as1 end => prom2 => setTimeout
     ```
