@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function Student(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    // 每一个学生打招呼都一样，可以写在原型中
+    Student.prototype.sayHi = function() {
+        console.log("你好，我是学生，我的名字叫" + this.name);
+    }
+    // 实例化学生对象
+    let s1 = new Student("小许", 18);
+    // s1.sayHi();
+    console.log(s1);
+    console.log(s1.__proto__);
+
+    var obj = {}
+    console.log(obj)
+</script>
+</html>
