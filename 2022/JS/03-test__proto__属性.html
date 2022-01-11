@@ -25,5 +25,20 @@
 
     var obj = {}
     console.log(obj)
+
+    // test 05-函数柯里化.md
+    function sum(a, b) {
+        console.log(arguments, 'arguments');
+        if ([...arguments][1] == undefined) {
+            let befor = [...arguments][0];
+            return function suum(afte) {
+                return befor + afte;
+            }
+        } else {
+            return a+b;
+        }
+    }
+    console.log(sum(1, 2))
+    console.log(sum(1)(2));
 </script>
 </html>
