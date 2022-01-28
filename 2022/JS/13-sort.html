@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 无参时的使用
+    // 该函数如果省略，元素按照转换为的字符串的各个字符的Unicode位点进行排序。
+    let arr = [23, 12, 32, 5, 21, 7, 1]
+    arr.sort();
+    console.log(arr); // [1, 12, 21, 23, 32, 5, 7]
+    // 1、首先，将数组里的数字逐个转为字符串，得到 ['23', '12', '32', '5', '21', '7', '1']
+    // 2、再按照首位的字符的 Unicode 位点来算
+
+    // 有参数
+    let arr1 = [23, 12, 32, 5, 21, 7, 1];
+    console.log(arr1, '-----sort前');
+    arr1.sort((a, b) => {
+        console.log("a:" + a , "---- a-b:" + (a-b), "----- b:" + b);
+        return a-b;
+    });
+    console.log(arr1); // [1, 5, 7, 12, 21, 23, 32]
+
+</script>
+</html>
