@@ -45,6 +45,17 @@ module.exports = {
                 test: /\.css$/,
                 // use: ["style-loader", "css-loader"], // 执行顺序：自后向前
                 use: [minicssPlugin.loader, "css-loader"], // minicssPlugin 使用文件抽离就 不用使用style-loader
+            },
+            // 自己loader 本地
+            {
+                test: /\.js$/,
+                user: {
+                    loader: resolve(__dirname, "./myLoaders/my-loader.js"),
+                    options: {
+                        name: "options 配置"
+                    }
+                }
+
             }
         ]
     },
