@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let obj = {
+        a: 1,
+        b: 2
+    }
+    // window.Reflect() // ES6 新增的
+    // ECMA 正在将 Object 属性、方法 转移到 Reflect
+    
+    // Object.defineProperty(obj, 'c', {
+    //     get() {
+    //         return 5
+    //     }
+    // })
+    // Object.defineProperty(obj, 'c', {
+    //     get() {
+    //         return 5
+    //     }
+    // })
+    // console.log('12313456455')
+
+    // 上面代码会报错，就不会继续往下走
+    // try catch
+
+    // Reflect 映射   容错
+    let c1 = Reflect.defineProperty(obj, 'c', {
+        get() {
+            return 5
+        }
+    })
+    console.log(c1) // true
+    let c2 = Reflect.defineProperty(obj, 'c', {
+        get() {
+            return 5
+        }
+    })
+    console.log(c2) // false
+
+</script>
+</html>
