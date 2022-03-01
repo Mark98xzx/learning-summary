@@ -22,7 +22,7 @@
 
 ### 模拟实现
 
-#### 第一步
+#### 第一步 模拟实现
 那么我们该怎么模拟实现两个效果呢？
 试想当调用 call 的时候，把 foo 对象改造成如下：
 ```js
@@ -75,3 +75,87 @@ fn 是对象的属性名。反正最后也要删除它
     bar1.call2(foo1); // 1
 ```
 正好可以打印 1 哎！是不是很开心！(～￣▽￣)～
+
+
+#### 第二步 模拟实现
+最开始也讲了，call 函数还能给定参数执行函数。
+- 举个例子：
+    ```js
+        var foo2 = {
+            value: 1
+        };
+
+        function bar2(name, age) {
+            console.log(name);
+            console.log(age);
+            console.log(this.value);
+        }
+
+        bar2.call(foo, 'mark', '24')
+        // mark
+        // 24
+        // 1
+    ```
+**注意：**传入的参数并不确定，这可怎么办？
+不急，我们可以从 arguments 对象中获取，取出第二个到最后一个参数，然后放到一个数组里。
+比如这样：
+```js
+    // 以上面例子为例，此时 arguments 为：
+    /* 
+        arguments = {
+            0: f00,
+            1: 'mark',
+            2: '24',
+            length: 3
+        }
+    */
+    // 因为 arguments 是类数组对象，所以可以用for循环
+    var args = [];
+    for (let i = 1, len = arguments.length; i < len; i++) {
+        args.push('arguments[' + i + ']');
+    }
+
+    // 执行之后，args 为 ["arguments[1]", "arguments[2]", "arguments[3]"]
+```
+不定长的参数问题解决了，我们接着把这个参数数组放到要执行的函数的参数里面去。
+```js
+    // 将数组里面的元素作为多个参数放进函数的形参里
+    context.fn(args.join(','));
+    // ??
+    // 这样操作肯定不行的啦
+```
+或许有人想到用 es6 的方法，不过 call 的 es3 的方法，我们为了模拟实现一个 es3 的方法，要用到 es6 的方法，好像.... 嗯，也可以啦。但是我们这次使用 eval 方法拼成一个函数，类似这样：
+```js
+    eval('context.fn(' + args + ')');
+```
+这里 args 会自动调用 Array.toString() 这个方法。
+
+- 所以 我们第二版 克服两个打问题，代码如下
+
+```js
+    // 第二版
+    Function.prototype.call3 = function(context) {
+        context.fn = this;
+        let args = [];
+        for(let i = 1, len = arguments.length; i < len; i++) {
+            args.push('arguments[' + i + ']')
+        }
+        eval('context.fn(' + args + ')');
+        delete context.fn;
+    }
+    // 测试一下
+    let foo3 = {
+        value: 1
+    };
+    function bar3(name, age) {
+        console.log(name);
+        console.log(age);
+        console.log(this.value);
+    };
+    bar3.call3(foo3, 'mark', 24);
+    // mark
+    // 24
+    // 1
+```
+(๑•̀ㅂ•́)و✧
+
