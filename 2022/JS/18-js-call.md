@@ -159,3 +159,74 @@ fn 是对象的属性名。反正最后也要删除它
 ```
 (๑•̀ㅂ•́)و✧
 
+#### 第三步 模拟实现
+模拟代码已经完成 80% ，还有两个小点要注意：
+1. this 参数可以传 null，当为 null 时，视为指向 window
+    - 举个例子
+    ```js
+        let value = 1;
+        
+        function bar() {
+            console.log(this.value)
+        }
+
+        bar.call(null); // 1
+    ```
+    虽然这个例子本身不用call，结果依然一样
+
+2. 函数是可以有返回值的
+- 举个例子：
+```js
+    var obj = {
+        value: 1
+    }
+    function bar4(name, age) {
+        return {
+            value: this.value,
+            name: name,
+            age:age
+        }
+    }
+
+    console.log(bar4('mark', 23)); // {value:undefined,name:mark,age:23}
+    console.log(bar4.call(obj, 'mark', 24)); // {value:1,name:mark,age:24}
+```
+不过比较好解决，看看第三版代码
+```js
+    Function.prototype.call4 = function(context) {
+        var context = context || window;
+        context.fn = this;
+
+        let args = [];
+        for (let i = 1, len = arguments.length; i < len; i++) {
+            args.push('arguments[' + i + ']');
+        }
+
+        var result = eval('context.fn(' + args + ')');
+
+        delete context.fn;
+        return result;
+    }
+
+    // 测试一下
+    let value = 2;
+
+    let obj1 = {
+        value: 10
+    }
+
+    function bar5(name, age) {
+        console.log(this.value);
+        return {
+            value: this.value,
+            name: name,
+            age: age,
+        }
+    }
+
+    bar5.call(null); // 2  node环境没有window  undefined
+    console.log(bar5.call4(obj1, 'mark', 18)); 
+    // 10
+    // {value:10, name: 'mark', age: 18}
+```
+到此，我们完成了 call 的模拟实现

@@ -76,3 +76,57 @@ bar3.call3(foo3, 'mark', 24);
 // 24
 // 1
 
+console.log("=========3================");
+
+var obj = {
+    value: 1
+}
+function bar4(name, age) {
+    return {
+        value: this.value,
+        name: name,
+        age:age
+    }
+}
+
+console.log(bar4('mark', 23)); // {value:undefined,name:mark,age:23}
+console.log(bar4.call(obj, 'mark', 24)); // {value:1,name:mark,age:24}
+
+
+console.log("=======第三版=================");
+
+Function.prototype.call4 = function(context) {
+    var context = context || window;
+    context.fn = this;
+
+    let args = [];
+    for (let i = 1, len = arguments.length; i < len; i++) {
+        args.push('arguments[' + i + ']');
+    }
+
+    var result = eval('context.fn(' + args + ')');
+
+    delete context.fn;
+    return result;
+}
+
+// 测试一下
+let value = 2;
+
+let obj1 = {
+    value: 10
+}
+
+function bar5(name, age) {
+    console.log(this.value);
+    return {
+        value: this.value,
+        name: name,
+        age: age,
+    }
+}
+
+bar5.call(null); // 2  node环境没有window  undefined
+console.log(bar5.call4(obj1, 'mark', 18)); 
+// 10
+// {value:10, name: 'mark', age: 18}
