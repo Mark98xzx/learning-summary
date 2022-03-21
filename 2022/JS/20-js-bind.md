@@ -178,3 +178,26 @@ bind() 方法会创建一个新函数。当这个新函数被调用时，bind() 
     console.log(obj1.habit); // shopping
     console.log(obj1.friend); // kevin
 ```
+
+### 构造函数效果的优化实现
+但是在这个写法中，我们直接将 fBound.prototype = this.prototype，我们直接修改 fBound.prototype 的时候，也会直接修改绑定函数的 prototype。这个时候，我们可以通过一个空函数来进行中转：
+```js
+    // 第四版
+    Function.prototype.mybind = function(context) {
+        let self = this;
+        let args = Array.prototype.slice.call(arguments, 1)
+
+        let fNOP = function(){};
+
+        let fBound = function() {
+            let bindArgs =  Array.prototype.slice.call(arguments);
+            return self.apply(this instanceof fBound ? this : context, args.concat(bindArgs))
+        }
+
+        // 修改返回函数的 prototype 为绑定函数的 prototype，实例就可以继承绑定函数的原型中的值
+        fNOP.prototype = this.prototype;
+        fBound.prototype = new fNOP;
+        return fBound;
+    }
+```
+
