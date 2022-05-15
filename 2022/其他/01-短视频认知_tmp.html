@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>01-短视频认知.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h2 id="%E7%9F%AD%E8%A7%86%E9%A2%91%E8%AE%A4%E7%9F%A5">短视频认知</h2>
+<h3 id="%E6%A0%B9%E6%8D%AE%E8%87%AA%E5%B7%B1%E7%9A%84%E5%9F%BA%E7%A1%80%E5%92%8C%E6%97%B6%E9%97%B4%E7%B2%BE%E5%8A%9B%E9%80%89%E6%8B%A9%E7%A1%AE%E5%AE%9A%E5%A5%BD%E8%87%AA%E5%B7%B1%E6%83%B3%E5%81%9A%E7%9A%84%E7%B1%BB%E5%9E%8B">根据自己的基础和时间精力，选择确定好自己想做的类型</h3>
+<ol>
+<li>选好视频领域
+<ul>
+<li>26个影视混剪热门领域</li>
+<li>爱情片、剧情片、喜剧片、家庭片、灾难片、文艺片、歌舞片、动漫片、西部片、武侠片、古装片、动作片、恐怖片、惊悚片、冒险片、犯罪片、悬疑片、纪录片、战争片、历史片、传记片、体育片、科幻片、魔幻片、奇幻片...</li>
+</ul>
+</li>
+<li>找到同领域爆款视频
+<ul>
+<li>抖音 关键字搜素 选择一周内点赞高的</li>
+</ul>
+</li>
+<li>去水印
+<ul>
+<li>微信小程序（轻抖...）</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>影视解说
+<ul>
+<li>剪辑 + 解说 = 原创</li>
+<li>必须要剪辑、原创解说类视频（影视、故事、美食、知识分享等）</li>
+</ul>
+</li>
+</ul>
+<h3 id="%E5%89%AA%E8%BE%91%E4%B8%89%E8%A6%81%E7%B4%A0">剪辑三要素</h3>
+<ol>
+<li>结构
+<ul>
+<li>开头吸睛，中间故事，结尾悬念</li>
+</ul>
+</li>
+<li>剧情
+<ul>
+<li>特效、反转、颜值</li>
+</ul>
+</li>
+<li>音乐
+<ul>
+<li>比较火的音乐，并且没有版权问题（抖音音乐榜）</li>
+</ul>
+</li>
+</ol>
+<h3 id="%E5%A6%82%E4%BD%95%E7%A1%AE%E5%AE%9A%E8%87%AA%E5%B7%B1%E6%83%B3%E5%81%9A%E7%9A%84%E7%B1%BB%E5%9E%8B">如何确定自己想做的类型</h3>
+<ol>
+<li>按自已的兴趣来，兴趣才是最好的导师，自已对什么感兴趣就做那一类，这是最容易火的，因为这就是你的优势和后期坚持的动力！</li>
+<li>如果你没有兴趣，也没有基础，前期你可以直接在书单和混剪二类选一个，如果你有基础，建议两类都做。</li>
+</ol>
+<blockquote>
+<p>确定好自己要做的赚钱项目之后，紧接着，我们就要开始【找对标账号】</p>
+</blockquote>
+<h3 id="%E4%BB%80%E4%B9%88%E6%98%AF%E5%AF%B9%E6%A0%87%E8%B4%A6%E5%8F%B7">什么是对标账号</h3>
+<ol>
+<li>最少是有50W粉丝以上</li>
+<li>最近发的每三个作品最少有一个10W以上的赞，如果最近有50W，100W赞的最好</li>
+<li>最最重要的是，你能模仿他！如果你找一个号你都不能模仿他，这就不是你的对标，那是你的目标！！！！！我们要的是对标！！！！！</li>
+</ol>
+<blockquote>
+<p>找好对标账号之后，我们要花时间去看他们的作品，第一是把自己的账号垂直于这个领域，让系统默认你“喜欢”这类作品，其次就是向他们学习，所谓耳濡目染，优秀的作品看的多了，你的网感自然而然就会提高到他们的档次</p>
+</blockquote>
+<h3 id="%E4%BC%98%E5%8C%96%E8%87%AA%E5%B7%B1%E7%9A%84%E6%8A%96%E9%9F%B3%E5%8F%B7%E8%B4%A6%E5%8F%B7%E4%BC%98%E5%8C%96%E5%9B%9B%E8%A6%81%E7%B4%A0">优化自己的抖音号【账号优化】四要素</h3>
+<ol>
+<li>账号名称
+<ul>
+<li>第 1 种是品牌的账号名称
+<ul>
+<li>这一类账号主打品牌的推广，就是我们常见到蓝 v 账号，大多以企业为名称。</li>
+</ul>
+</li>
+<li>第 2 种名称就是领域+IP名字。
+<ul>
+<li>比如“办公室小野”，她的领域是做办公室白领这一人群+小野，还有最近爆火  的“名侦探小宇”，是推理类内容/女性安全主题+小宇这个 IP，如果不是大公司， 没有那么多钱去砸自己的品牌，那么还是建议用“领域+IP”的形式为自己的账号命名。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>头像
+<ul>
+<li>如今抖音上一些现象级的大 IP 基本都是用自己的头像，而且一旦启用就不要再去更换了。这方面做的比较好的是 “尬演七段”，通过这个真人头像就能猜到七段是做搞笑的垂直领域内容，并且有利于打造账号的 IP。</li>
+</ul>
+</li>
+<li>背景图
+<ul>
+<li>这一块除了要设计的吸引人以外呢，一些账号会选择填一行文字“点击关注”这一类，我们自己通过测试，发现如果有这行字的话，用户点击关注你的概率会提高 30%，所以这里一定要注意一下，头像和Banner 图都可以用小工具【图怪兽】和【稿定】自己设计的</li>
+</ul>
+</li>
+<li>个人签名
+<ul>
+<li>这块内容可以说是各大账号吸粉引流的主战场，抖音官方对这一块并不是太严格，但我们必须及时了解官方的政策。另外呢，这一块也可以作为引导用户点击关注的地方比如提示一下“记得关注哦”。但是这一块内容，我们在初期就要规划好，因为一些账号在刚刚开始放量的时候，选择频繁修改签名，结果被机器注意到了，被定义为营销号，是很不划算的啊。</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>最后，关于地域信息，很多人会忽略，但建议打击还是写人比较多的城市，比如北上广深等，因为大城市往往受到人们的向往，会引导人们去主动关注。</p>
+</blockquote>
+<h3 id="%E8%BF%98%E6%9C%89%E9%9C%80%E8%A6%81%E6%8F%90%E5%8D%87-3-%E4%B8%AA%E7%BB%B4%E5%BA%A6">还有需要提升 3 个维度</h3>
+<ul>
+<li>第 1 个是你的活跃度，让系统知道你是抖音的活跃用户；</li>
+<li>第 2 个是内容的垂直度，你要重点关注某个垂直领域；</li>
+<li>第 3 个是账号的健康度，让抖音知道你是一个“人”在使用，而不是机器在频繁操作。</li>
+</ul>
+<h3 id="%E5%85%BB%E5%8F%B7%E6%9C%9F%E9%97%B4%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E4%BA%94%E5%A4%A7%E9%97%AE%E9%A2%98">养号期间需要注意的五大问题</h3>
+<ol>
+<li>切勿 1 机登陆多号，一台手机登陆不超过2个抖音号</li>
+<li>切勿频繁修改个人信息（头像，名字，签名）
+<ul>
+<li>个人信息这里，抖音目前不是很严格，所以一些团队开始用这一块做广告，如果频繁修改，很容易被认定为广告营销。</li>
+</ul>
+</li>
+<li>切勿频繁登陆退出，频繁的登录退出同样会被机器监测到，这里要多多注意。</li>
+<li>切勿同一 WIFI 下登陆 3 个以上的抖音账号
+<ul>
+<li>因为 1 个账号有问题，会导致连带关系，所以建议用 手机 流量。</li>
+</ul>
+</li>
+<li>切勿随意大量点赞
+<ul>
+<li>重点还是要让机器识别出，你是一个“人”的逻辑在操作，要等到视频浏览完毕再给予点赞、关注、转发、评论等操作，因为不正规的操作都容易被机器识别。</li>
+</ul>
+</li>
+</ol>
+<h3 id="%E8%A7%86%E9%A2%91%E6%B6%88%E9%87%8D">视频消重</h3>
+<ul>
+<li>
+<p>准备工作</p>
+<ol>
+<li>下载剪映app（手机应用商店下载）</li>
+<li>先保存好要发的视频素材</li>
+</ol>
+</li>
+<li>
+<p>视频消重操作步骤</p>
+<ul>
+<li>第一步：打开剪映，点击【开始创作】导入素材，点添加确定</li>
+<li>第二步：点击【画中画】，然后点【新增画中画】，选择和原素材不一样的任意视频，点击添加按钮</li>
+<li>第三步：点击【混合模式】，选择【滤色】，将数值左滑调到1
+<ul>
+<li>这里为什么不调为0呢，因为0就和没加一样了，1会有点效果</li>
+</ul>
+</li>
+<li>第四步：点击【音量】，将音量调至0，然后点对勾确定。</li>
+<li>这样初步的消重就完成啦，最后点击【导出】可在相册查看作品</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>制作视频添加画中画做搬运视频是消重的其中一部分，单靠画中画消重是不够的，我们还需要适当加一些变速、镜像翻转、蒙版马赛克、水印、添加BGM等很多方式进行消重</p>
+</blockquote>
+<h3 id="%E7%9F%AD%E8%A7%86%E9%A2%91%E5%B8%A6%E8%B4%A7%E6%93%8D%E4%BD%9C">短视频带货操作</h3>
+<ul>
+<li>
+<p>选产品 -&gt; 拍视频 -&gt; 开橱窗 -&gt; 提佣金</p>
+</li>
+<li>
+<p>抖音</p>
+<ul>
+<li>右下角 “我” -&gt; 右上角三道杠 -&gt; 创作者服务中心 -&gt;  全部分类 -&gt; 商品橱窗 -&gt; 成为带货达人 -&gt; 带货权限</li>
+<li>开通橱窗挂小黄车（四条件）
+<ol>
+<li>实名认证</li>
+<li>作者保证金 500元</li>
+<li>发布视频 &gt;= 10 条</li>
+<li>粉丝量 &gt;= 1000</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p>快手小店开通步骤</p>
+<ul>
+<li>左上角三道杠 -&gt; 快手小店 -&gt; 右上角“开店” -&gt; 我可以推广商品赚钱 -&gt; 立即加入</li>
+</ul>
+</li>
+</ul>
+<h3 id=""></h3>
+
+</body>
+</html>
