@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul class="wrapper" >
+        <li draggable="true" style="background: coral;">1</li>
+        <li draggable="true" style="background:red;">2</li>
+        <li draggable="true" style="background: yellowgreen;">3</li>
+        <li draggable="true" style="background: blue;">4</li>
+        <li draggable="true" style="background: black;">5</li>
+    </ul>
+</body>
+<script>
+    let ul = document.getElementsByTagName('ul')[0];
+    let li = document.getElementsByTagName('li');
+    let len = li.length;
+    function bindEvntDrag(e) {
+        for(let i = 0; i < len; i++) {
+            li[i].addEventListener('dragstart', function(e) {
+            let index = getIndex(this);
+            e.dataTransfer.setData('data',index);
+        });
+        li[i].addEventListener('dragover', function(e) {
+            e.preventDefault();
+        });
+        li[i].addEventListener('drop', function(e) {
+            let i = e.dataTransfer.getData('data');
+            console.log(i)
+                ul.insertBefore(li[i], this);
+        });
+        }
+    
+    }
+    function getIndex(dom) {
+        for(let i = 0; i < len; i++) {
+            if(li[i] === dom) {
+                return i
+            }
+        }
+    }
+    bindEvntDrag();
+</script>
+</html>
