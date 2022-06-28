@@ -1,7 +1,13 @@
 ## vue 高德地图实现自定义多标记点功能
 
-- 首先安装 ：npm i @amap/amap-jsapi-loader --save
-- 在使用地图的页面 引入：import AMapLoader from ‘@amap/amap-jsapi-loader’;
+- 首先安装 ：
+    ```bash
+        npm i @amap/amap-jsapi-loader --save
+    ```
+- 在使用地图的页面 引入：
+    ```bash
+        import AMapLoader from '@amap/amap-jsapi-loader';
+    ```
 - 处理单标记：
     ```js
         import AMapLoader from '@amap/amap-jsapi-loader';
