@@ -88,3 +88,100 @@
     <my-input :title.sync="msg" />
 ```
 > 可以看到 .sync 和 v-model 所能达到的效果是一样的，用什么就看你什么场景，一般表单组件上都是用 v-model
+
+### vue3 中的v-model
+
+#### 修改默认 prop 名和事件名
+- 当在自定义组件上，v-model 默认绑定的 prop 名从 value 变为 modelValue，而事件名也从默认的 input 该为 update:modelValue,在vue3 中编写上面的 MyInput 组件，需要这样：
+
+```vue
+<template>
+    <div>
+        <input type="text" :value="modelValue" @input="$emit('update:modelValue', $event.target.value)" /> // 事件名改为 update:modelValue
+    </div>
+</template>
+<script>
+    export default {
+        props: {
+            modelValue: String, // 默认 prop 从 value 改为 modelValue
+        }
+    }
+</script>
+```
+- 使用组件时：
+```js
+    <my-input v-model="msg" />
+
+    // 等同于
+    <my-input :modelValue="msg" @update:modelValue="msg = $event" />
+```
+
+### 废除 model 选项 和 .sync 修饰符
+
+- vue3 中移除了 model 选项，这样就不可以在组件内修改默认 prop 名了。现在有一种更简单的方式，就是直接在 v-model 后面传递要修改的 prop 名：
+
+```js
+    // 要修改默认 prop 名，只需要在 v-model 后面接上 ：propName， 例如修改为 title
+    <my-input v-model:title="msg" />
+
+    // 等同于
+    <my-input :title="msg" @update:title="msg = $event" />
+```
+
+- 注意组件内部也要修改 props：
+
+```vue
+<template>
+    <div>
+        <input type="text" :value="title" @input="$emit('update:title', $event.target.value)" />
+    </div>
+</template>
+<script>
+    export default {
+        // 此时这里不需要 model 选项来修改了
+        props: {
+            title: String, // 修改为 title， 注意template 中也要修改
+        }
+    }
+</script>
+```
+
+- 同时，.sync 修饰符也被移除了，如果你尝试使用它，会报这样的错误：
+    > '.sync' modifier on 'v-bind' directive is deprecated. Use 'v-model:propName' instead
+    - 错误提示中说明了，可以使用 v-model:propName 的方式来替代 .sync，因为本质上效果是一样的。
+
+### 使用多个 v-model
+- Vue3 中支持使用多个 v-model，属于新增功能，使得组件数据更新更灵活。例如有这样一个表单子组件，用户输入的多个数据都需要更新到父组件中显示，可以这样写：
+
+- 表单子组件 Form
+```vue
+<template>
+  <div class="form">
+    
+    <label for="name">姓名</label>
+    <input id="name" type="text" :value="name" @input="$emit('update:name', $event.target.value)">
+    
+    <label for="address">地址</label>
+    <input id="address" type="text" :value="address" @input="$emit('update:address', $event.target.value)">
+  
+  </div>
+</template>
+
+<script>
+export default {
+  props:{
+    name: String,
+    address: String
+  }
+}
+</script>
+```
+
+- 父组件使用这个组件时：
+```js
+    <child-com v-model:name="name" v-model:address="address" />
+
+    // 显示
+    <div>{{ name }}</div>
+    <div>{{ address }}</div>
+```
