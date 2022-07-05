@@ -22,3 +22,6 @@
                 面对对象分析与设计 -作者：Grady Booch
 
                 For the time being, this is the learning mode, which will be modified and optimized later. Welcome to make suggestions.
+
+
+编程是一件比打游戏还要有趣的一件事

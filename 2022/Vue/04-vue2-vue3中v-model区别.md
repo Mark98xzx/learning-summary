@@ -185,3 +185,67 @@ export default {
     <div>{{ name }}</div>
     <div>{{ address }}</div>
 ```
+
+## 总结
+### vue2 中的两种写法
+- 父子组件通信，都是单向的，很多时候需要双向通讯
+    1. 父组件使用： msg.sync="value" 子组件使用 $emit('update:value', 'value改变后的值')
+    2. 父组件传值直接传对象，子组件收到对象后可随意改变对象的属性，但不能改变对象本身
+    3. 父组件使用 v-model
+    > 第一种曾经被废除过，由于维护成本的原因被删掉，但经过证实，确实有存在的意义，又被加上。
+
+### v-model 写法一
+- 父组件
+```html
+<template>
+    <div>
+        <child-com v-model="test" />
+        <p> {{ '外面的值：' + test }} </p>
+        <button @click="handleClick">外面改变里面值</button>
+    </div>
+<template>
+<script>
+    import childCom from './childCom.vue';
+    export default {
+        components: {
+            childCom,
+        }
+        data () {
+            return {
+                test: '',
+            }
+        },
+        methods: {
+            handleClick() {
+                this.test += 1;
+            }
+        }
+    }
+</script>
+```
+- 子组件 childCom
+```html
+    <template>
+        <div>
+            <p> {{ '里面的值：' + msg }} </p>
+            <button @click="handleClick">里面改外面的值</button>
+        </div>
+    </template>
+
+    <script>
+        export default {
+            model: { // 使用model， 这儿2个属性，prop属性说，我要将test作为该组件被使用时（此处为childCom组件被父组件调用）v-model能取到的值，event说，我emit ‘editFn’ 的时候，参数的值就是父组件v-model收到的值。
+                prop: 'test',
+                event: 'editFn',
+            },
+            props: {
+                test: ''
+            },
+            methods: {
+                handleClick() {
+                    this.$emit('editFn', this.test+2)
+                }
+            }
+        }
+    </script>
+```
