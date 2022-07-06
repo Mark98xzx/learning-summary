@@ -249,3 +249,36 @@ export default {
         }
     </script>
 ```
+
+### v-model 写法二
+- 父组件
+```html
+<template>
+    <div>
+        <child-com v-model="test" />
+    </div>
+</template>
+```
+- 子组件 child-com
+```html
+<template>
+    <div>
+        <p> {{ '里面的值：' + value }} </p> 
+        <button @click="handleClick">里面改变外面值</button>
+    </div>
+<template>
+<script>
+    export default {
+        props: {
+            value: { // 必须使用 value
+                default: '',
+            }
+        },
+        methods: {
+            handleClick() {
+                this.$emit('input', this.value+3); // 这里必须用 input 发送数据，发送的数据会被父元素 v-model="test" 接收到，再被 value=test 传回来。
+            }
+        },
+    }
+</script>
+```
