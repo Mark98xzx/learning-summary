@@ -282,3 +282,32 @@ export default {
     }
 </script>
 ```
+
+#### vue3中的用法
+##### 一、v-model：双向绑定
+- Vue3：v-model规定：
+    - 属性名任意（假设为xxx），事件名必须为 update:xxx
+    - 效果
+        - 未使用 v-model
+        ```html
+            <Com :value="value" @update:value="value=$event" />
+        ```
+        - 使用v-model
+        ```html
+            <Com v-model:value="value" />
+        ```
+    - [查看官方文档](https://v3.cn.vuejs.org/guide/migration/v-model.html#v-model)
+
+##### 二、emit
+- 新增emit用法，与this.$emit作用相同
+    - 注意：新增emit没有 ''多乐'' 符
+    ```js
+        setup(props, context) {
+            context.emit('update:value', newValue); //事件名 ，事件参数
+            };
+        // =======
+        method(){
+            this.$emit('update:value', newValue)
+        }
+    ```
+    **$event的值是emit的第二个参数**
