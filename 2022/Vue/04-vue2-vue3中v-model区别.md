@@ -4,9 +4,9 @@
 - vue2中的 v-model，它主要用于表单元素和自定义组件上。v-model 本质上是一个语法糖，会对用户输入做一些特殊处理以达到更新数据，其处理就是给使用的元素绑定属性和事件。
 
 - v-model 使用在表单元素上时，会根据元素不同采取不同的的处理：
-    - 当<input type="text">文本 和 <textarea>上使用时，会默认给元素绑定名为 value 的 prop 和名为 input 的事件
-    - 当<input type="checkbox">复选框 和 <input typex="radio">单选框 上使用时，会默认给元素绑定名为 checked 的 prop 和名为 change 的事件
-    - 当 <select>选择框 上使用时，则绑定名为 value 的 prop 和名为 change 的事件
+    - 当`<input type="text">`文本 和 `<textarea>`上使用时，会默认给元素绑定名为 value 的 prop 和名为 input 的事件
+    - 当`<input type="checkbox">`复选框 和 `<input typex="radio">`单选框 上使用时，会默认给元素绑定名为 checked 的 prop 和名为 change 的事件
+    - 当 `<select>`选择框 上使用时，则绑定名为 value 的 prop 和名为 change 的事件
 
 > 这些是 Vue 默认帮我们处理的，可以直接使用。但是你也会发现一些第三方组件也可以使用 v-model ，比如 Element 中的 Input 组件。这是因为这些组件自己实现了 v-model，原理其实就是上面说到的绑定属性和事件。
 
