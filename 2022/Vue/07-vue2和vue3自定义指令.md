@@ -56,4 +56,46 @@
 - 自定义指令的生命周期（钩子函数），调用时机
 - 钩子函数的参数有哪些
 
-### vue3
+### vue3 自定义指令的变化
+
+- 每个钩子函数中，参数的变化：
+    - el: 指令绑定的元素，可以用来总结操作DOM
+    - binding: 数据对象，包含以下属性
+        1. instance：当前组件的实例，一般推荐指令和组件无关，如果有需要使用组件上下文ViewModel，可以在这里获取
+        2. value：指令的值
+        3. oldValue：指令的前一个值，在 beforeUpdate 和 Updated 中，可以和 value 是相同的内容
+        4. arg：传给指令的参数，例如v-on:click中的click
+        5. modifiers：包含修饰符的对象, 例如v-on.stop:click 可以获取到一个{stop: true}的对象
+            - vnode: vue编译生成的虚拟节点
+            - preVNode: Update时的上一个虚拟节点
+
+#### vue3 自定义指令的生命周期和组件的生命周期类似:
+
+- created - 元素创建后，但是属性和事件还没有生效时调用。
+- beforeMount- 仅调用一次，当指令第一次绑定元素的时候。
+- mounted- 元素被插入父元素时调用.
+- beforeUpdate: 在元素自己更新之前调用
+- updated - 元素或者子元素更新之后调用.
+- beforeUnmount: 元素卸载前调用.
+- unmounted -当指令卸载后调用，仅调用一次
+
+- 全局自定义指令的写法
+```js
+    let app = createApp(App)
+    app.directive('highlight', {
+        beforeMount(el, binding, vnode) {
+            el.style.background = binding.value
+        }
+    })
+```
+
+- 局部自定义指令的写法
+```js
+    directives: {
+        highlight: {
+            beforeMount(el, binding, vnode) {
+                el.style.background = binding.value;
+            },
+        }
+    }
+```
