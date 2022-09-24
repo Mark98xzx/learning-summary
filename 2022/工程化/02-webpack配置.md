@@ -138,22 +138,18 @@ plugin 可以在 webpack 运行到某个阶段的时候，帮你做一些事情�
         npm install --save-dev html-webpack-plugin
     ```
 - 配置
-    title: ⽤来⽣成⻚⾯的 title 元素
-    filename: 输出的 HTML ⽂件名，默认是 index.html, 也可以直接配置带有⼦⽬录。
-    template: 模板⽂件路径，⽀持加载器，⽐如 html!./index.html
-    inject: true | 'head' | 'body' | false ,注⼊所有的资源到特定的 template 或者
-    templateContent 中，如果设置为 true 或者 body，所有的 javascript 资源将被放置到 body
-    元素的底部，'head' 将放置到 head 元素中。
-    favicon: 添加特定的 favicon 路径到输出的 HTML ⽂件中。
-    minify: {} | false , 传递 html-minifier 选项给 minify 输出
-    hash: true | false, 如果为 true, 将添加⼀个唯⼀的 webpack 编译 hash 到所有包含的脚本和
-    CSS ⽂件，对于解除 cache 很有⽤。
-    cache: true | false，如果为 true, 这是默认值，仅仅在⽂件修改之后才会发布⽂件。
-    showErrors: true | false, 如果为 true, 这是默认值，错误信息会写⼊到 HTML ⻚⾯中
-    chunks: 允许只添加某些块 (⽐如，仅仅 unit test 块)
-    chunksSortMode: 允许控制块在添加到⻚⾯之前的排序⽅式，⽀持的值：'none' | 'default' |
-    {function}-default:'auto'
-    excludeChunks: 允许跳过某些块，(⽐如，跳过单元测试的块)
+    1. title: ⽤来⽣成⻚⾯的 title 元素
+    2. filename: 输出的 HTML ⽂件名，默认是 index.html, 也可以直接配置带有⼦⽬录。
+    3. template: 模板⽂件路径，⽀持加载器，⽐如 html!./index.html
+    4. inject: true | 'head' | 'body' | false ,注⼊所有的资源到特定的 template 或者 templateContent 中，如果设置为 true 或者 body，所有的 javascript 资源将被放置到 body 元素的底部，'head' 将放置到 head 元素中。
+    5. favicon: 添加特定的 favicon 路径到输出的 HTML ⽂件中。
+    6. minify: {} | false , 传递 html-minifier 选项给 minify 输出
+    7. hash: true | false, 如果为 true, 将添加⼀个唯⼀的 webpack 编译 hash 到所有包含的脚本和CSS ⽂件，对于解除 cache 很有⽤。
+    8. cache: true | false，如果为 true, 这是默认值，仅仅在⽂件修改之后才会发布⽂件。
+    9. showErrors: true | false, 如果为 true, 这是默认值，错误信息会写⼊到 HTML ⻚⾯中
+    10. chunks: 允许只添加某些块 (⽐如，仅仅 unit test 块)
+    11. chunksSortMode: 允许控制块在添加到⻚⾯之前的排序⽅式，⽀持的值：'none' | 'default' | {function}-default:'auto'
+    12. excludeChunks: 允许跳过某些块，(⽐如，跳过单元测试的块)
 
 - 案例 
     ```js
@@ -210,3 +206,27 @@ plugin 可以在 webpack 运行到某个阶段的时候，帮你做一些事情�
         // cleanOnceBeforeBuildPatterns: ["**/*", "!dll", "!dll/"],
         - ! 感叹号相当于 exclude 排除，意思是清空排除 dll 目录，和 dll目录下所有文件
         > **注意**：数组列表里面的 */ 是默认值，不可忽略，否则不做清空操作。
+
+##### terser-webpack-plugin
+- 使用该插件来压缩 JavaScript
+```js
+    npm install --save-dev terser-webpack-plugin
+```
+
+```js
+    const TerserPlugin = require('terser-webpack-plugin');
+    module.exports = {
+        optimization: {
+            minimize: true, // 是否要压缩
+            // minimizer: [new TerserPlugin()]
+            minimizer: [new TerserPlugin({
+                test: /\.js(\?.*)?$/i, // 匹配参与压缩的文件
+                parallel: true, // 是否使用多进程并发运行
+                terserOptions: { // Terser 压缩配置
+                    output: { comments: false }
+                },
+                extractComments: true, // 将注释剥离到单独的文件中
+            })]
+        }
+    }
+```
