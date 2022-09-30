@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>节流</title>
+</head>
+<body>
+    <input type="text">
+    <input type="submit" id="input">
+</body>
+<script type="text/javascript">
+    let btn = document.getElementById('input');
+     
+    // btn.addEventListener('click', submitFn, false);
+    // btn.addEventListener('click', throttle(submitFn, 2000), false);
+    btn.addEventListener('click', throttle1(submitFn, 2000), false);
+
+    function submitFn(e) {
+        console.log(e);
+    }
+
+    function throttle(fn, delay) {
+        let begin = 0;
+        return function() {
+            let cur = new Date().getTime();
+            console.log('cur - begin', cur - begin)
+            if (cur - begin > delay) {
+                fn.apply(this, arguments)
+                begin = cur;
+            }
+        }
+    }
+
+    // 
+    function throttle1(fn, delay = 100) {
+        // 通过闭包保存一个标记，相当于一个开关
+        let flag = true
+        return function() {
+            // 在函数开头判断标记定时器是否触发，如果有值 return
+            if (!flag) return
+            flag = false
+            setTimeout(() => {
+                fn.apply(this, arguments)
+                flag = true
+            }, delay)
+        }
+    }
+</script>
+</html>

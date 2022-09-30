@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>防抖</title>
+</head>
+<body>
+    <input type="text">
+    <input type="submit" id="submit-input">
+</body>
+<script type="text/javascript">
+    let btn = document.getElementById('submit-input');
+
+    // btn.addEventListener('click', submitFn, false);
+    // btn.addEventListener('click', debounce1(submitFn, 2000), false);
+    btn.addEventListener('click', debounce2(submitFn, 2000, true), false);
+    // btn.addEventListener('click', debounce(submitFn, 2000), false);
+
+    function submitFn(e) {
+        console.log(this)
+        console.log(e);
+    }
+
+    function debounce(fn, delay) {
+        // fn();
+        let t = null;
+        return function() {
+            // console.log(arguments)
+            let firstClick = !t; // 初次直接触发
+
+            if (t) clearTimeout(t);
+
+            if (firstClick) {
+                fn.apply(this, arguments);
+            }
+
+            t = setTimeout(() => {
+                // fn.apply(this, arguments)
+                t = null;
+            }, delay)
+        }
+    }
+
+    // ========== 初次直接触发 ==============
+    function debounce2(fn, delay, triggerNow) {
+        // fn();
+        let t = null;
+        return function() {
+            // console.log(arguments)
+
+            if (t) clearTimeout(t);
+            console.log(triggerNow);
+            if (triggerNow) {
+                let firstClick = !t;
+                console.log(t, 'firstClick', firstClick)
+
+                if (firstClick) {
+                    fn.apply(this, arguments);
+                }
+
+                t = setTimeout(() => {
+                    t = null;
+                }, delay);
+            } else {
+                t = setTimeout(() => {
+                    fn.apply(this, arguments)
+                }, delay)
+
+            }
+        }
+    }
+
+    // ========================= 第一次会有延迟 ===========================
+    function debounce1(fn, delay) {
+        // fn();
+        let t = null;
+        return function() {
+            // console.log(arguments)
+
+            if (t) clearTimeout(t);
+
+            t = setTimeout(() => {
+                fn.apply(this, arguments)
+            }, delay)
+        }
+    }
+</script>
+</html>
