@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- 1. 左侧固定宽度，右侧flex自适应 -->
+<!-- <style>
+    #box {
+        width: 100%;
+        height: 400px;
+        display: flex;
+    }
+    #left {
+        width: 100px;
+        height: 100%;
+        background-color: lightgreen;
+    }
+    #right {
+        flex: 1;
+        background-color: lightblue;
+    }
+
+    #box2 {
+        width: 500px;
+        height: 500px;
+        background-color: plum;
+    }
+</style> -->
+
+<!-- 2. 左侧浮动，右侧宽度100%，占据左侧普通流位置 -->
+<!-- <style>
+    #box {
+        width: 100%;
+        height: 400px;
+        background-color: #aaaaaa;
+    }
+    #left {
+        width: 100px;
+        height: 100%;
+        float: left;
+        background-color: lightgreen;
+    }
+    #right {
+        width: 100%;
+        height: 100%;
+        background-color: aqua;
+    }
+    #box2 {
+        width: 500px;
+        height: 500px;
+        background-color: plum;
+    }
+</style> -->
+
+<!-- 3. 左侧浮动，右侧设置margin-left等于左侧宽度 -->
+<!-- <style>
+    #box {
+        width: 100%;
+        height: 400px;
+        background-color: #aaaaaa;
+    }
+    #left {
+        width: 100px;
+        height: 100%;
+        float: left;
+        background-color: rosybrown;
+    }
+    #right {
+        margin-left: 100px;
+        /* width: calc(100% -100px); */
+        height: 100%;
+        background: #0f0;
+    }
+    #box2 {
+        width: 500px;
+        height: 500px;
+        background-color: plum;
+    }
+</style> -->
+
+<!-- 4. 左侧固定宽度、固定定位， 右侧左外边距等于左侧宽度 -->
+<style>
+    #box {
+        width: 100%;
+        height: 400px;
+        background-color: #aaaaaa;
+        position: relative;
+    }
+    #left {
+        width: 100px;
+        height: 100%;
+        background-color: rosybrown;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    #right {
+        margin-left: 100px;
+        width: calc(100% - 100px);
+        height: 100%;
+        background-color: #0f0;
+    }
+</style>
+<body>
+    <div id="box">
+        <div id="left"></div>
+        <div id="right">right</div>
+      </div>
+      <div id="box2"></div>
+</body>
+</html>
