@@ -22,6 +22,18 @@
 - vue3 采用 compositionApi 进行组织功能，解决反复横跳，优化复用逻辑（mixin 带来的数据源不清晰、命名冲突），相比 optionApi 类型推断更加方便
 - 增加了 Fragment、 Teleport、Suspense 组件
 
+#### 性能优化
+
+- 每次重新渲染 都要创建虚拟节点 createVnode 这个方法
+- 静态提升 静态节点进行提取
+
+#### 事件缓存
+
+- 缓存事件 防止重新创建事件
+
+> render() => h('div', {}, 'xxx');
+> jsx 目的是为了灵活 （没有优化的）， template是为了简单（模板编译优化）
+
 ### vue3 架构分析
 
 1. Monorepo 介绍
@@ -44,3 +56,14 @@
   - template-explorer：用于调试编译器输出的开发工具
   - shared：多个包之间共享的内容
   - vue：完整版本，包括运行时和编译时
+
+### vue3 与 vue2 对比
+
+- 响应式原理 proxy -> defineProperty
+- Vue3 diff算法（可根据 patchFlag 做 diff）和 Vue2 的区别（全量的diff）  最长递增子序列算法
+- compositionApi  ->  options Api
+- Fragment 多个节点可以支持、Teleport、Suspence、Keep-alive、transition.. 都是vue3
+- Vue3  ts  ->  vue2  flow
+- 自定义渲染器 createRenderer()传入自己渲染的方法，好处就是我可以根据vue核心来实现不同平台的代码
+- monorepo的代码管理方式
+- 模板编译优化..
