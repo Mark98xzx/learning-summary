@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style="background-color:aqua; width:20px; height: 20px"></div>
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            // let s = 0;
+            // for(let i = 0; i < 1000000; i ++) {
+            //     s += i;
+            // }
+            // console.log(s);
+
+            setTimeout(() => {
+                document.body.appendChild(document.createTextNode('hello'))
+            }, 1000);
+        })
+        setTimeout(() => {
+            const {
+                fetchStart, // 开始时间
+                requestStart, // 请求的开始
+                responseStart, // 响应的开始
+                responseEnd, // 响应的结束
+                domInteractive, // dom可交互的时间
+                domContentLoadedEventEnd, // dom加载完毕
+                loadEventStart // 所有资源加载完毕
+            } = performance.timing;
+
+            let TTFB = responseStart - requestStart; // 首字节返回的事件, 服务器的处理哪里
+            let TTI = domInteractive - fetchStart; // 整个的一个可交互的市场
+            let DCL = domContentLoadedEventEnd - fetchStart; // DOM 整个加载完毕
+            let L = loadEventStart - fetchStart; // 所有资源加载完毕所用的时长
+
+            console.log(TTFB, TTI, DCL, L);
+
+            const paint = performance.getEntriesByType('paint')
+            console.log(paint, 'paint')
+            console.log(paint[0].startTime, 'paint') // FP 只是画像素而已
+            console.log(paint[1].startTime, 'paint') // FCP 有内容才行
+        }, 3000)
+    </script>
+</body>
+</html>
