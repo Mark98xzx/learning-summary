@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let obj1 = {
+        nullVal: null,
+        fn: function() { console.log('fn') },
+        array: [1, 2],
+        arrayOfObj: [{a: 3, b: 4}],
+        obj: { c: 5 },
+        reg: /7/,
+        map: new Map([['d', 8], ['e', 9]]),
+        set: new Set([10, 11]),
+        num: 12
+    }
+
+    // 深拷贝: 所有引用数据类型的属性都要是新的,从而改了 A 不影响 B 的属性值
+
+    // 开发中会用到最简单的深拷贝: 变成字符串, 加载字符串
+    // 优点: 简单
+    // 缺点: 1. 会掉 JSON 不支持的数据类型
+    //       2. 不支持环形对象
+
+    let obj2 = {
+        to: obj1
+    }
+    obj1.to = obj2;
+
+    // 缓存 避免无限递归执行
+    // let cachedMap = new Map();
+    let cachedMap = new WeakMap();
+    // Map 对于 set 进来的东西, 是一个强引用
+    // GC 垃圾回收机制: 针对于一个变量, 采用的是计数统计的方式来决定这个变量是否被回收, 如果一次强引用, 该变量引用计数 +1
+    // 只有等于 0 的情况下, 才能在 GC 垃圾回收机制运行时, 释放这个变量
+    // Map 会增加变量的引用, 导致其无法被回收
+    // 强引用: 你改了 我改了; 你释放 我没释放
+    // 弱引用: 我压根没引用, 你释放, 它就被回收
+    
+    let cloneObj = deepClone(obj1);
+    console.log('obj1', obj1);
+    console.log('cloneObj', cloneObj);
+
+    // 实现一系列不同类型属性的深拷贝
+    function deepClone(obj) {
+        // 一堆类型深拷贝 = 基本数据(跳过) + 引用数据类型(object+array和其他类型)
+
+        // 排除基本数据类型 null
+        if (typeof obj !== 'object' || obj === null) {
+            return obj;
+        }
+
+        // *** 引用数据类型判断是否处理过 ***
+        // console.log('cachedMap', cachedMap)
+        if (cachedMap.has(obj)) {
+            return cachedMap.get(obj); // 返回已经深拷贝过的 tmp
+        }
+
+        // 其他数据类型 + else {object+array}
+        if (obj instanceof RegExp) {
+            let tmp = new RegExp(obj);
+            cachedMap.set(obj, tmp);
+            return tmp;
+        } else if (obj instanceof Map) {
+            let tmp = new Map(); // [ [key, value], [k2, val2] ]
+            cachedMap.set(obj, tmp);
+            for (const entries of obj) {
+                let key = entries[0];
+                let val = entries[1];
+
+                tmp.set(deepClone(key), deepClone(val))
+            }
+            return tmp;
+        } else if (obj instanceof Set) {
+            let tmp = new Set();
+            cachedMap.set(obj, tmp);
+            for (const val of obj) {
+                tmp.add(deepClone(val))
+            }
+            return tmp;
+        } else {
+            // object & array
+            // 不需要判断是对象还是数组
+            // 循环当前值, 取出 key 和 value 值, 赋值新对象
+            let tmp = new obj.constructor();
+            cachedMap.set(obj, tmp);
+            // console.log('tmp', tmp)
+            for(let key in obj) {
+                let val = obj[key];
+                tmp[key] = deepClone(val);
+            }
+            return tmp;
+        }
+    }
+</script>
+</html>
