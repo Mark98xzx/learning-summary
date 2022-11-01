@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>手写一个promis</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 1 基本结构
+    function MyPromise(excutor) {
+        let slef = this;
+        this.status = 'pending'; // 状态
+        // this.status = 'pending'; // ??
+        this.value = null; // 成功的结果
+        this.reason = null; // 失败的理由
+
+        // 7 新增两个容器
+        this.onFulfilledCallbacks = [];
+        this.onRejectedCallbacks = [];
+
+        // 成功的方法
+        function resolve(value) {
+            // 5 状态判断
+            if (slef.status === 'pending') {
+                slef.value = value;
+                slef.status = 'fulfilled';
+                // 发布
+                slef.onFulfilledCallbacks.forEach(item => item(value));
+            }
+        }
+
+        // 失败的方法
+        function reject(reason) {
+            if (slef.status === 'pending') {
+                slef.reason = reason;
+                slef.status = 'rejeted';
+                slef.onRejectedCallbacks.forEach(item => item(reason));
+            }
+        }
+
+        // 4 实例创建后立即执行一遍
+        try {
+            // 正常执行的代码
+            excutor(resolve, reject)
+        } catch(err) {
+            // 报错, 异常的代码
+            reject(err)
+        }
+    }
+    // 2 then() 的添加
+    MyPromise.prototype.then = function(onFulfilled, onRejected) {
+        console.log('this', this)
+        // 6 状态改变, 调用 .then()
+        onFulfilled = typeof onFulfilled === "function" ? onFulfilled : function(data) { resolve(data) };
+        onRejected = typeof onRejected === "function" ? onRejected : function(err) { throw err }
+
+        console.log('status', this.status);
+
+        let self = this;
+        // 订阅
+        if (this.status === 'pending') {
+            this.onFulfilledCallbacks.push(onFulfilled);
+            this.onRejectedCallbacks.push(onRejected);
+        }
+    }
+
+    // 8 catch
+    MyPromise.prototype.catch = function(fn) {
+        return this.then(null, fn)
+
+    }
+
+    // 3 测试一下
+    let demo = new MyPromise((resolve, reject) => {
+        console.log('potato....');
+        setTimeout(() => {
+            resolve(123456);
+        }, 1000)
+    })
+
+    demo.then(data => console.log(data))
+</script>
+</html>
