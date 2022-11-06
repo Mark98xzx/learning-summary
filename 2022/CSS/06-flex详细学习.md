@@ -128,9 +128,9 @@
 
 |  序号   | 属性值  | 作用 |
 |  ----  | ----  | -----  |
-| 1  | flex-basis |  设置弹性盒子伸缩基准 |
-| 2  | flex-grow | 设置弹性盒子的扩展比率 |
-| 3  | flex-shrink | 设置弹性盒子的缩小比率 |
+| 1  | flex-grow | 设置弹性盒子的扩展比率 |
+| 2  | flex-shrink | 设置弹性盒子的缩小比率 |
+| 3  | flex-basis |  设置弹性盒子伸缩基准 |
 | 4  | flex | flex-grow、flex-shrink、flex-basis 的缩写 |
 
 
