@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .clickbox {
+            width: 50px;
+            height: 20px;
+            /* background: #0f0; */
+            position: absolute;
+            top: 275px;
+            left: 280px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="main" style="height:400px; width: 600px;"></div>
+    <div class="clickbox"></div>
+    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+    <script>
+        var myChart = echarts.init(document.getElementById('main'));
+        var option = {
+            series: [
+                {
+                    type: "gauge",
+
+                    axisLine: {
+                        //仪表盘轴线
+                        lineStyle: {
+                            width: 5,
+                            color: [
+                                [0, "#B9D3FF"],
+                                [1, "#B9D3FF"],
+                            ],
+                        },
+                        roundCap: true,
+                    },
+                    progress: {
+                        //进度条
+                        show: true,
+                        width: 5,
+                        roundCap: true,
+                        itemStyle: {
+                            color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
+                            {
+                                offset: 0,
+                                color: "#60ACFC",
+                            },
+                            {
+                                offset: 1,
+                                color: "#99D6FE",
+                            },
+                            ]),
+                        },
+                    },
+                    radius: "100%",
+                    markPoint: {
+                        // 仪表盘指针圆
+                        animation: true,
+                        silent: true,
+                        data: [
+                            {
+                            x: "50%",
+                            y: "50%",
+                            symbol: "circle",
+                            symbolSize: 5,
+                            itemStyle: {
+                                color: "auto",
+                            },
+                            },
+                        ],
+                    },
+                    pointer: {
+                        // 仪表盘指针
+                        //icon:'circle',
+                        width: 2,
+                        length: "60%",
+                        itemStyle: {
+                            color: "#68B0FC",
+                        },
+                    },
+                    axisTick: {
+                        //刻度线
+                        show: true,
+                        splitNumber: 1,
+                        length: 2,
+                        distance: 0,
+                        lineStyle: {
+                            color: "#ccc",
+                        },
+                    },
+                    splitLine: {
+                        //分割线
+                        show: false,
+                    },
+                    axisLabel: {
+                        //刻度标签
+                        color: "#9EA7B1",
+                        distance: -24,
+                        fontSize: 8,
+                    },
+                    detail:{
+                        valueAnimation:true,
+                        color:'auto',
+                        fontSize:20,
+                        triggerEvent:true,
+                        formatter:'{value}%',
+                    },
+                    data: [
+                        {
+                            name: 'xxxx',
+                            value: 80,
+                        },
+                    ],
+                },
+            ],
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+
+        // myChart.on('click', function (params) { 
+        //     console.log('xxxxx', params);
+        // })
+        // myChart.on('click', function(params) {
+        //     console.log(params);
+        //     // window.open('https://www.baidu.com/s?wd=' + encodeURIComponent(params.name));
+        // });
+        let clickbox  = document.querySelector('.clickbox')
+        console.log(clickbox);
+        clickbox.onclick = function() {
+            console.log(21321);
+            // window.open('https://www.baidu.com/')
+        }
+        myChart.getZr().on('click', function(event) {
+        // 该监听器正在监听一个`zrender 事件`。
+            console.log(event);
+        });
+        // myChart.on('click', function(event) {
+        // // 该监听器正在监听一个`echarts 事件`。
+        // });
+    </script>
+
+
+</body>
+</html>
