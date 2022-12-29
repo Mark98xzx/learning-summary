@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .clickbox {
+            width: 50px;
+            height: 20px;
+            /* background: #0f0; */
+            position: absolute;
+            top: 275px;
+            left: 280px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="main" style="height:400px; width: 600px;"></div>
+    <div class="clickbox"></div>
+    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+    <script>
+        var myChart = echarts.init(document.getElementById('main'));
+        var option = {
+            tooltip: { show: true },
+            legend: {
+                show: true,
+                x: 'right',
+                itemWidth: 14,
+                itemHeight: 14,
+                right: '10',
+                top: '10',
+                formatter: '{a|{name}}',
+                textStyle: {
+                    padding: [3, 0, 0, 0],
+                    rich: {
+                        a: {}
+                    }
+                }
+            },
+            grid: {
+                top: 50,
+                bottom: 40,
+                left: 60,
+                right: 10
+            },
+            xAxis: {
+                nameTextStyle: {
+                    color: '#3D5063'
+                },
+                type: 'category',
+                axisLine: {
+                    show: true,
+                    lineStyle: {
+                        color: '#D5DEEA'
+                    }
+                },
+                axisLable: {
+                    color: '#3D5063',
+                    padding: 5
+                },
+                axisTick: {
+                    show: false
+                },
+                data: ['222', '333', '444', '555', '666']
+            },
+            yAxis: {
+                type: 'value',
+                name: '单',
+                show: true,
+                axisLable: {
+                    color: '#333'
+                },
+                nameTextStyle: {
+                    color: '#333',
+                    padding: [0, 30, 15, 0],
+                    fontSize: 14,
+                    // align: 'left'
+                },
+                axisLine: {
+                    show: false,
+                    lineStyle: {
+                        color: '#e0e0e0'
+                    }
+                },
+                splitLine: {
+                    lineStyle: {
+                        dashOffset: 5,
+                        color: '#d7e0ec',
+                        type: [10, 10]
+                    }
+                }
+            },
+            series: [
+                {
+                    data: [10, 3, 4, 5],
+                    name: '222',
+                    type: 'bar',
+                    barWidth: 32,
+                    stack: 'all',
+                    color: '#0f0',
+                    itemStyle: {
+                        barBorderRadius: 16
+                    }
+                },
+                {
+                    data: [10, 3, 4, 5],
+                    name: '333',
+                    type: 'bar',
+                    barWidth: 32,
+                    stack: 'all',
+                    color: '#ccc',
+                    itemStyle: {
+                        barBorderRadius: 16
+                    }
+                }
+            ]
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+
+        // myChart.on('click', function (params) { 
+        //     console.log('xxxxx', params);
+        // })
+        // myChart.on('click', function(params) {
+        //     console.log(params);
+        //     // window.open('https://www.baidu.com/s?wd=' + encodeURIComponent(params.name));
+        // });
+        let clickbox  = document.querySelector('.clickbox')
+        console.log(clickbox);
+        clickbox.onclick = function() {
+            console.log(21321);
+            // window.open('https://www.baidu.com/')
+        }
+        myChart.getZr().on('click', function(event) {
+        // 该监听器正在监听一个`zrender 事件`。
+            console.log(event);
+        });
+        // myChart.on('click', function(event) {
+        // // 该监听器正在监听一个`echarts 事件`。
+        // });
+    </script>
+
+
+</body>
+</html>
