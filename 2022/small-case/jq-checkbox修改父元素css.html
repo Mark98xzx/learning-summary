@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            display: inline-block;
+            width: 100px;
+            margin-left: 10px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div>
+        <input type="checkbox" />A
+        </div>
+        <div>
+        <input type="checkbox" />B
+        </div>
+        <div>
+        <input type="checkbox" />C
+        </div>
+        <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+            //注册checkbox的click事件
+    $(document).on('click', ':checkbox', function (e) {
+        console.log(e);
+        
+        //停止事件冒泡,当点击的是checkbox时,就不执行父div的click
+            e.stopPropagation();
+            var oCk = $(this), 
+            parentDiv = oCk.parent();
+            oCk.prop('checked') ? parentDiv.css('background-color', 'blue') : parentDiv.css('background-color', '');
+    }
+    );
+    //注册div的click事件,点击div时动态执行checkbox的click事件
+    // $(document).on('click', 'div', function () {
+
+    //     $(this).find(':checkbox').click();
+    // }
+    // )
+    </script>
+</body>
+</html>
