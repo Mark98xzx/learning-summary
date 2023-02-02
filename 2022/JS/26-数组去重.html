@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        const arr = [
+            { id: 1, name: "a" },
+            { id: 2, name: "b" },
+            { id: 1, name: "c" },
+            { id: 3, name: "d" }
+        ];
+        // 1. 使用 filter 方法过滤重复元素，使用 findIndex 方法判断对象是否重复
+        const uniQueenArr = arr.filter((item, index) => 
+            arr.findIndex(i => i.id === item.id) === index
+        );
+        console.log(uniQueenArr);
+
+        // 2. 使用 forEach() 方法遍历数组，使用 some() 方法判断是否重复
+        const uniQueenArr1 = []
+        arr.forEach(item => {
+            if (!uniQueenArr1.some(i => i.id === item.id)) {
+                uniQueenArr1.push(item);
+            }
+        });
+        console.log(uniQueenArr1);
+
+        // 3. 使用 Map 结构去重对象数组时，需要借助 array.map() 函数将对象数组进行转换
+        const uniQueenArr3 = [...new Map(arr.map(item => [item.id, item])).values()];
+        console.log(uniQueenArr3);
+    </script>
+</body>
+
+</html>
