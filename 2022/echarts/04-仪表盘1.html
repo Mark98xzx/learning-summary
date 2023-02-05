@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .clickbox {
+            width: 50px;
+            height: 20px;
+            /* background: #0f0; */
+            position: absolute;
+            top: 275px;
+            left: 280px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="main" style="height:400px; width: 600px;"></div>
+    <div class="clickbox"></div>
+    <script src="https://cdn.staticfile.org/echarts/5.3.0/echarts.min.js"></script>
+    <script>
+        var obj = {
+            ycz: 146,
+            wcz: 18
+        }
+        var yczRiad = obj.ycz / (obj.ycz + obj.wcz);
+        console.log(yczRiad);
+        var myChart = echarts.init(document.getElementById('main'));
+        var option = {
+            series: [
+                {
+                    type: 'gauge',
+                    // max: 40,
+                    axisLine: {
+                        // 仪表盘轴线
+                        lineStyle: {
+                            width: 8,
+                            // color: [[0, '#B9D3FF'], [1, '#B9D3FF']]
+                            color: [
+                                [yczRiad, '#14eeb6'],
+                                // [0.7, '#37a2da'],
+                                [1, '#f0a404']
+                            ],
+                        },
+                        roundCap: true
+                    },
+                    anchor: {
+                        show: true,
+                        showAbove: false,
+                        size: 5,
+                        itemStyle: {
+                            borderWidth: 2
+                        }
+                    },
+                    progress: { // 进度条
+                        show: false,
+                        width: 5,
+                        roundCap: true,
+                        itemStyle: {
+                            color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
+                            {
+                                offset: 0,
+                                color: "#60ACFC",
+                            },
+                            {
+                                offset: 1,
+                                color: "#99D6FE",
+                            },
+                            ]),
+                        },
+                    },
+                    radius: '100%',
+                    center: ['50%', '60%'],
+                    markPoint: { // 仪表盘指针圆
+                        animation: true,
+                        silent: true,
+                        data: [{
+                            x: '50%',
+                            y: '60%',
+                            symbol: 'circle',
+                            symbolSize: 5,
+                            itemStyle: {
+                                color: '#FFF'
+                            }
+                        }]
+                    },
+                    pointer: { // 仪表盘指针
+                        width: 2,
+                        length: '60%',
+                        itemStyle: {
+                            color: '#68B0FC',
+                        }
+                    },
+                    axisTick: { // 刻度线
+                        show: true,
+                        splitNumber: 1,
+                        length: 3,
+                        distance: 0,
+                        lineStyle: {
+                            color: '#ccc',
+                        }
+                    },
+                    splitLine: { // 分割线
+                        show: false
+                    },
+                    axisLabel: {
+                        color: '#9EA7B1',
+                        distance: -5,
+                        fontSize: 12
+                    },
+                    detail:{
+                        valueAnimation:true,
+                        color:'auto',
+                        fontSize:20,
+                        triggerEvent:true,
+                        formatter:'{value}%',
+                    },
+                    title: {
+                        offsetCenter: [0, '20%'],
+                        color: '#aaaaaa'
+                    },
+                    data: [
+                        {
+                            // value: Math.round(datas.val * 100) / 100
+                            value: (yczRiad * 100).toFixed(2),
+                            name: '完成率'
+                        }
+                    ],
+
+                }
+            ]
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+
+    </script>
+
+
+</body>
+</html>
