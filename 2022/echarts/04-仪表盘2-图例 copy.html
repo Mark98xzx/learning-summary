@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .clickbox {
+            width: 50px;
+            height: 20px;
+            /* background: #0f0; */
+            position: absolute;
+            top: 275px;
+            left: 280px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="main" style="height:400px; width: 600px;"></div>
+    <div class="clickbox"></div>
+    <script src="https://cdn.staticfile.org/echarts/5.3.0/echarts.min.js"></script>
+    <script>
+        var obj = {
+            ycz: 146,
+            wcz: 18
+        }
+        var yczRiad = obj.ycz / (obj.ycz + obj.wcz);
+        console.log(yczRiad);
+        var res = {
+            passing_rate: 88,
+            passing_rata_gauge: [{name: "已处置", value: 40}, {name: "未处置", value: 30}]
+        }
+        var myChart = echarts.init(document.getElementById('main'));
+        var option = {
+        legend: {     //配置legend，这里的data，要对应type为‘bar’的series数据项的‘name’名称，作为图例的说明
+            data: ['已处置', '未处置'], // 对应的图例名称
+            bottom: '5%',
+            selectedMode: false,  //图例禁止点击
+            formatter: function (name) {  //图例后添加数值
+                // 数据格式如下
+                //let data = [{name: "总计", value: 40}, {name: "通过数", value: 30}];
+                let data = res.passing_rata_gauge;
+                let tarValue;
+                for (let i = 0; i < data.length; i++) {
+                    if (data[i].name === name) {
+                        tarValue = data[i].value;
+                    }
+                }
+                return name + ": " + tarValue;
+            }
+        },
+        xAxis: [   //这里有很多的show，必须都设置成不显示
+            {
+                type: 'category',
+                data: [],
+                axisLine: {
+                    show: false
+                },
+                splitLine: {
+                    show: false
+                },
+                splitArea: {
+                    interval: 'auto',
+                    show: false
+                }
+            }
+        ],
+        yAxis: [ //这里有很多的show，必须都设置成不显示
+            {
+                type: 'value',
+                axisLine: {
+                    show: false
+                },
+                splitLine: {
+                    show: false
+                },
+                axisLabel: {
+                    show: false
+                }
+            }
+        ],
+        toolbox: {
+            show: false,
+        },
+        tooltip: {
+            formatter: '{a} <br/>{b} : {c}%'
+        },
+        series: [
+            {
+                name: '仪表盘',
+                type: 'gauge',
+                axisLine: {
+                        // 仪表盘轴线
+                        lineStyle: {
+                            width: 8,
+                            // color: [[0, '#B9D3FF'], [1, '#B9D3FF']]
+                            color: [
+                                [yczRiad, '#14eeb6'],
+                                // [0.7, '#37a2da'],
+                                [1, '#f0a404']
+                            ],
+                        },
+                        roundCap: true
+                    },
+                    
+                    anchor: {
+                        show: true,
+                        showAbove: false,
+                        size: 5,
+                        itemStyle: {
+                            borderWidth: 2
+                        }
+                    },
+                progress: {
+                    show: true
+                },
+                detail:{
+                    valueAnimation:true,
+                    color:'auto',
+                    fontSize:20,
+                    triggerEvent:true,
+                    formatter:'{value}%',
+                },
+                title: {
+                    offsetCenter: [0, '20%'],
+                    color: '#aaaaaa'
+                },
+                data: {
+                    value: (yczRiad * 100).toFixed(2),
+                    name: '完成率'
+                }
+            },
+            {
+                name: '已处置',
+                type: 'bar',
+                barWidth: '30%',  //不显示，可以随便设置
+                data: [0],
+                itemStyle: {
+                    normal: {
+                        color: '#14eeb6',  //这里的图例要注意，颜色设置和仪表盘的颜色对应起来
+                    }
+                }
+            },
+            {
+                name: '未处置',
+                type: 'bar',
+                barWidth: '60%',
+                data: [0],
+                itemStyle: {
+                    normal: {
+                        color: '#f0a404',
+                    }
+                }
+            }
+        ]
+        }
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+
+    </script>
+
+
+</body>
+</html>
