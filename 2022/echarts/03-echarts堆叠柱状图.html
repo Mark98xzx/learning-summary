@@ -100,7 +100,7 @@
                     type: 'bar',
                     barWidth: 32,
                     stack: 'all',
-                    color: '#0f0',
+                    color: '#54edff',
                     itemStyle: {
                         barBorderRadius: 16
                     }
@@ -138,9 +138,11 @@
         // 该监听器正在监听一个`zrender 事件`。
             console.log(event);
         });
-        // myChart.on('click', function(event) {
-        // // 该监听器正在监听一个`echarts 事件`。
-        // });
+        myChart.on('click', function(event, data) {
+        // 该监听器正在监听一个`echarts 事件`。
+        console.log(event, 'event');
+        // return aa(event, data)
+        });
     </script>
 
 
