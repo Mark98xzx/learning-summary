@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+
+<body>
+    <div id="main" style="height:400px; width: 600px;"></div>
+    <script src="https://cdn.staticfile.org/echarts/5.0.0/echarts.min.js"></script>
+    <script>
+        var data = [                    
+            {name: 'I级',value: 2},                     
+            {name: 'II级',value: 10},                    
+            {name: 'III级',value: 20},                     
+            {name: 'IV级',value: 30},                       
+        ];        
+        var links = [                        
+            {source: 'I级',target: 'II级',value: 5},
+            {source: 'I级',target: 'III级',value:3},                        
+            {source: 'II级',target: 'III级',value:3},                        
+            {source: 'II级',target: 'IV级',value: 10},
+            {source: 'III级',target: 'IV级',value: 10},
+        ] ;   
+        // var data = [                    
+        //     {name: 'aa',value: 10},                     
+        //     {name: 'bb',value: 20},                    
+        //     {name: 'cc',value: 20},                     
+        //     {name: 'dd',value: 10},                    
+        //     {name: 'ee',value: 20},                    
+        //     {name: 'ff',value: 20}                    
+        // ];        
+        // var links = [                        
+        //     {source: 'aa',target: 'cc',value:3},                        
+        //     {source: 'aa',target: 'ff',value:4},                        
+        //     {source: 'aa',target: 'dd',value:3},                        
+        //     {source: 'bb',target: 'cc',value:8},                        
+        //     {source: 'bb',target: 'dd',value:9},                        
+        //     {source: 'bb',target: 'ff',value:3},                        
+        //     {source: 'ee',target: 'ff',value:3},                        
+        //     {source: 'ee',target: 'cc',value:3},                        
+        //     {source: 'ee',target: 'dd',value:3},
+        // ] ;  
+        var myChart = echarts.init(document.getElementById('main'));
+        var option = {
+            // title: {
+            //     text: '整改前'
+            // },
+            tooltip: {
+                trigger: 'item',
+                triggerOn: 'mousemove'
+            },
+            series: {
+                type: 'sankey',
+                layout: 'none',
+                emphasis: {
+                    focus: 'adjacency'
+                },
+                data: data,
+                links: links,
+                emphasis: {
+                    focus: 'adjacency'
+                },
+                // lineStyle: {
+                //     color: 'gradient',
+                //     curveness: 0.5
+                // },
+                // nodeAlign: 'left',
+            }
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+
+    </script>
+
+
+</body>
+
+</html>
