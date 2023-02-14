@@ -15,10 +15,35 @@
     <script src="https://cdn.staticfile.org/echarts/5.0.0/echarts.min.js"></script>
     <script>
         var data = [                    
-            {name: 'I级',value: 2},                     
-            {name: 'II级',value: 10},                    
-            {name: 'III级',value: 20},                     
-            {name: 'IV级',value: 30},                       
+            {
+                name: 'I级',
+                value: 2,
+                itemStyle: {
+                    color: '#0f0',
+                    borderColor: '#0f0'
+                }
+            },                     
+            {
+                name: 'II级',value: 10,
+                itemStyle: {
+                    color: '#666666',
+                    borderColor: '#666666'
+                }
+            },                    
+            {
+                name: 'III级',value: 20,
+                itemStyle: {
+                    color: '#666666',
+                    borderColor: '#666666'
+                }
+            },                     
+            {
+                name: 'IV级',value: 30,
+                itemStyle: {
+                    color: '#666666',
+                    borderColor: '#666666'
+                }
+            },                       
         ];        
         var links = [                        
             {source: 'I级',target: 'II级',value: 5},
