@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>文字显示在图片上</title>
+<style type="text/css">
+*{
+border:none;text-decoration:none
+}
+.wrap{
+margin:8px;position:relative
+}
+.photo a{
+position:absolute;display:block;
+border:1px solid #555555;
+}
+.photo a:hover{
+border:1px solid #FFFFFF;
+}
+.photo span{
+width:500px;background:#000;display:block;
+position:absolute;bottom:0;left:0;color:#fff;
+filter:alpha(opacity=50);-moz-opacity:0.6;
+opacity:0.6;font:bold 12px/30px Verdana, Arial;
+text-align:center;cursor:hand;
+}
+.photo a:hover span{
+text-decoration:underline
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="photo">
+<a href="#">
+<img src="wall8.jpg" border="0" alt=""/>
+<span>标题层叠在图片上，标题文字和背景半透明。鼠标经过边框换色。
+</span>
+</a></div>
+</div>
+<div>自由互联：https://www.jb51.net/</div>
+</body>
+</html>
