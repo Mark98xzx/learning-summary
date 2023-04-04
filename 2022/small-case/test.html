@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr =  [{dimDateTime: '20230311', value: 10}, {dimDateTime: '202310', value: 17}]
+        let arr1 = [
+            {name: '01', value: 0},
+            {name: '02', value: 0},
+            {name: '03', value: 0},
+            {name: '04', value: 0},
+            {name: '05', value: 0},
+            {name: '06', value: 0},
+            {name: '07', value: 0},
+            {name: '08', value: 0},
+            {name: '09', value: 0},
+            {name: '10', value: 0},
+            {name: '11', value: 0},
+            {name: '12', value: 0},
+        ]
+        arr.forEach(function(v){
+            arr1.forEach(function(item) {
+                if (v.dimDateTime.substring(4) == item.name) {
+                    item.value = v.value;
+                }
+            })
+        });
+        console.log(arr1);
+    </script>
+</body>
+</html>
