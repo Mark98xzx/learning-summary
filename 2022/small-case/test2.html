@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+        /**绿色勾*/
+        .myicon-tick-checked {
+            display: inline-block;
+            position: relative;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: #2ac845;
+        }
+        /**灰色勾*/
+        .myicon-tick-uncheck {
+            display: inline-block;
+            position: relative;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: #5f646e;
+        }
+            .myicon-tick-checked:before, .myicon-tick-checked:after, .myicon-tick-uncheck:before, .myicon-tick-uncheck:after {
+                content: '';
+                pointer-events: none;
+                position: absolute;
+                color: white;
+                border: 1px solid;
+                background-color: white;
+            }
+            .myicon-tick-checked:before, .myicon-tick-uncheck:before {
+                width: 1px;
+                height: 1px;
+                left: 25%;
+                top: 50%;
+                transform: skew(0deg,50deg);
+            }
+            .myicon-tick-checked:after, .myicon-tick-uncheck:after {
+                width: 3px;
+                height: 1px;
+                left: 45%;
+                top: 42%;
+                transform: skew(0deg,-50deg);
+            }
+
+        .feature {
+            width: 14px;
+            height: 6px;
+            display: inline-block;
+            border: 1px solid black;
+            border-width: 0 0 1px 1px;
+            transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+            -o-transform: rotate(-45deg);
+            vertical-align: baseline;
+        }
+        div {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin: -50px 0 0 -50px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <span class="myicon-tick-checked"></span><br />
+        <span class="myicon-tick-uncheck"></span><br />
+        <span class="feature"></span>
+    </div>
+</body>
+</html>
