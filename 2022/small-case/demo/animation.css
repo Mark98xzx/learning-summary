@@ -1,0 +1,40 @@
+.content {
+    width: 800px;
+    height: 400px;
+    margin: 0 auto;
+    background-color: #0e1d3e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    overflow: hidden;
+    position: relative;
+    width: 413px;
+    height: 64px;
+    line-height: 64px;
+    background: url(./img/02_bg.png) center no-repeat;
+}
+
+.some_box::before {
+    content: "";
+    position: absolute;
+    left: -190px;
+    width: 190px;
+    height: 50px;
+    top: 7px;
+    background: url(./img/02_bg_gd.png) center no-repeat;
+    animation: translate 4.5s linear infinite;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+}
+
+@keyframes translate {
+    from {
+        left: -190px;
+    }
+    to {
+        left: 413px;
+    }
+}
