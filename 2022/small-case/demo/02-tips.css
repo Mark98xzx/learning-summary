@@ -1,0 +1,56 @@
+.item {
+    width: 100px;
+    height: 100px;
+    margin: 15px;
+    background: #73a058;
+    float: left;
+    border-radius: 50px;
+}
+
+h1 {
+    font-family: 'HeydingsCommonIconsRegular', sans-serif;
+    font-weight: normal;
+    margin: 30px 0 0 0;
+    color: #fff;
+    text-align: center;
+    font-size: 60px;
+    line-height: 30px;
+}
+
+.tooltip p {
+    font-family: sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.tooltip {
+    width: 120px;
+    padding: 10px;
+    border-radius: 3px;
+    position: absolute;
+    box-shadow: 1px 1px 10px 0 #ccc;
+    margin: -500px 0 0 -20px;
+    background: #fff;
+    -webkit-transition: margin .5s ease-in-out;
+    -moz-transition: margin .5s ease-in-out;
+}
+
+.item:hover {
+    background: #6d643b;
+}
+
+.item:hover .tooltip {
+    margin: -145px 0 0 -20px;
+    -webkit-transition: margin .15s ease-in-out;
+    -moz-transition: margin .15s clas;
+}
+
+.arrow {
+    position: absolute;
+    margin: 10px 0 0 50px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #fff;
+}
